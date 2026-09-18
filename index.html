@@ -1,0 +1,1527 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>16am – Diagnostics & État des lieux | Rhône-Alpes Auvergne</title>
+<meta name="description" content="16am, expert en diagnostics immobiliers et états des lieux en Rhône-Alpes Auvergne. DPE, amiante, plomb, électricité, gaz, Carrez, ERP, PPT. Rapport immédiat après intervention.">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --blue:#003853;--blue-mid:#004f73;--blue-dark:#001f2e;
+  --green:#34ff9a;--green-dark:#00c96e;
+  --violet:#7b4cfd;
+  --white:#fff;--off:#f4f7f9;--gray:#64748b;--border:#e2e8f0;
+  --grad:linear-gradient(135deg,#34ff9a 0%,#7b4cfd 100%);
+  --grad-r:linear-gradient(135deg,#7b4cfd 0%,#34ff9a 100%);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--white);color:var(--blue);overflow-x:hidden;}
+
+/* ── LOGO SVG ── */
+.logo-wrap{cursor:pointer;text-decoration:none;display:inline-flex;flex-direction:column;align-items:center;}
+.logo-pill{background:var(--blue);border-radius:50px;padding:6px 16px 6px 7px;display:flex;align-items:center;gap:7px;}
+.logo-orb{width:30px;height:30px;border-radius:50%;background:var(--grad);flex-shrink:0;}
+.logo-16am{font-size:20px;font-weight:800;color:var(--white);letter-spacing:-0.5px;line-height:1;}
+.logo-base{font-size:10px;font-weight:600;color:var(--blue);margin-top:3px;letter-spacing:0.5px;display:flex;align-items:center;gap:5px;}
+.logo-base .ldot{width:5px;height:5px;border-radius:50%;background:var(--violet);}
+.logo-dark .logo-base{color:rgba(255,255,255,0.5);}
+.logo-dark .logo-base .ldot{background:var(--green);}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:500;background:rgba(255,255,255,0.96);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);padding:0 60px;height:68px;display:flex;justify-content:space-between;align-items:center;}
+.nav-links{display:flex;gap:2px;list-style:none;}
+.nav-links a{text-decoration:none;color:var(--gray);font-size:14px;font-weight:500;padding:7px 13px;border-radius:8px;transition:all .2s;cursor:pointer;}
+.nav-links a:hover,.nav-links a.active{background:var(--off);color:var(--blue);}
+.nav-r{display:flex;align-items:center;gap:10px;}
+.btn-nav-ghost{background:none;border:1.5px solid var(--border);color:var(--blue);padding:9px 18px;border-radius:9px;font-size:13.5px;font-weight:600;cursor:pointer;font-family:inherit;transition:all .2s;}
+.btn-nav-ghost:hover{border-color:var(--blue);}
+.btn-nav{background:var(--blue);color:var(--white);padding:9px 20px;border-radius:9px;font-size:13.5px;font-weight:700;cursor:pointer;border:none;font-family:inherit;transition:all .2s;}
+.btn-nav:hover{background:var(--blue-mid);}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:5px;}
+.hamburger span{display:block;width:22px;height:2px;background:var(--blue);border-radius:2px;transition:all .3s;transform-origin:center;}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.hamburger.open span:nth-child(2){opacity:0;}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+.mob-drawer{display:flex;position:fixed;top:68px;left:0;right:0;bottom:0;background:var(--white);z-index:499;flex-direction:column;padding:20px;gap:4px;opacity:0;pointer-events:none;transition:opacity .25s;visibility:hidden;}
+.mob-drawer.open{opacity:1;pointer-events:all;visibility:visible;}
+.mob-drawer a{display:block;padding:15px 16px;font-size:16px;font-weight:600;color:var(--blue);text-decoration:none;border-radius:10px;cursor:pointer;}
+.mob-drawer a:hover{background:var(--off);}
+.mob-cta{background:var(--blue)!important;color:var(--white)!important;text-align:center;margin-top:8px;}
+
+/* ── PAGES ── */
+.page{display:none;}
+.page.active{display:block;padding-top:68px;}
+
+/* ── BUTTONS ── */
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:10px;font-size:15px;font-weight:700;text-decoration:none;cursor:pointer;border:none;font-family:inherit;transition:all .2s;}
+.btn-blue{background:var(--blue);color:var(--white);}
+.btn-blue:hover{background:var(--blue-mid);transform:translateY(-1px);}
+.btn-green{background:var(--green);color:var(--blue);}
+.btn-green:hover{opacity:.9;transform:translateY(-1px);}
+.btn-outline-w{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:10px;font-size:15px;font-weight:700;text-decoration:none;cursor:pointer;font-family:inherit;transition:all .2s;border:2px solid rgba(255,255,255,0.3);color:var(--white);background:none;}
+.btn-outline-w:hover{border-color:var(--green);color:var(--green);}
+.btn-outline-b{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:10px;font-size:15px;font-weight:700;text-decoration:none;cursor:pointer;font-family:inherit;transition:all .2s;border:2px solid var(--border);color:var(--blue);background:none;}
+.btn-outline-b:hover{border-color:var(--blue);}
+
+/* ── UTILS ── */
+.tag{display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:3px;text-transform:uppercase;padding:5px 13px;border-radius:20px;margin-bottom:14px;}
+.tag-g{background:rgba(52,255,154,0.15);color:var(--green-dark);}
+.tag-v{background:rgba(123,76,253,0.1);color:var(--violet);}
+.tag-w{background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.8);}
+.h2{font-size:36px;font-weight:800;line-height:1.15;color:var(--blue);margin-bottom:14px;}
+.lead{font-size:15.5px;color:var(--gray);line-height:1.8;max-width:560px;margin-bottom:44px;}
+.grad-t{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+
+/* ══════════════════════════════
+   PAGE ACCUEIL
+══════════════════════════════ */
+/* HERO */
+.hero{min-height:calc(100vh - 68px);background:var(--blue);display:grid;grid-template-columns:1fr 1fr;overflow:hidden;position:relative;}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 75% 40%,rgba(52,255,154,.1) 0%,transparent 55%),radial-gradient(ellipse at 20% 75%,rgba(123,76,253,.12) 0%,transparent 50%);pointer-events:none;}
+.hero-l{display:flex;flex-direction:column;justify-content:center;padding:80px 50px 80px 60px;position:relative;z-index:1;}
+.hero-eyebrow{display:flex;align-items:center;gap:8px;font-size:12.5px;color:rgba(255,255,255,.55);margin-bottom:28px;font-weight:500;}
+.hero-dot{width:7px;height:7px;border-radius:50%;background:var(--grad);flex-shrink:0;}
+.hero-dot2{background:var(--green);}
+h1.hero-h{font-size:54px;font-weight:800;color:var(--white);line-height:1.06;margin-bottom:8px;}
+.hero-sig{font-size:20px;font-weight:800;color:var(--green);margin-bottom:22px;line-height:1.3;}
+.hero-sub{font-size:16px;color:rgba(255,255,255,.6);line-height:1.78;max-width:430px;margin-bottom:38px;font-weight:400;}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;}
+.hero-proof{display:flex;align-items:center;gap:18px;margin-top:34px;padding-top:34px;border-top:1px solid rgba(255,255,255,.1);flex-wrap:wrap;}
+.proof-item{display:flex;align-items:center;gap:7px;font-size:13px;color:rgba(255,255,255,.5);}
+.proof-ck{width:16px;height:16px;border-radius:50%;background:rgba(52,255,154,.2);display:flex;align-items:center;justify-content:center;font-size:9px;color:var(--green);flex-shrink:0;}
+/* ENTRY CARDS */
+.hero-r{display:flex;flex-direction:column;justify-content:center;align-items:center;padding:60px 40px 60px 20px;gap:14px;position:relative;z-index:1;}
+.ecard{width:100%;max-width:370px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:24px 28px;cursor:pointer;transition:all .25s;backdrop-filter:blur(6px);}
+.ecard:hover{background:rgba(255,255,255,.09);border-color:rgba(52,255,154,.4);transform:translateY(-2px);}
+.ecard-top{display:flex;align-items:center;gap:12px;margin-bottom:10px;}
+.ecard-ico{width:42px;height:42px;border-radius:11px;background:var(--grad);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+.ecard-title{font-size:17px;font-weight:700;color:var(--white);}
+.ecard-desc{font-size:13px;color:rgba(255,255,255,.5);line-height:1.62;}
+.ecard-cta{display:flex;align-items:center;gap:6px;font-size:12.5px;font-weight:700;color:var(--green);margin-top:14px;}
+
+/* STATS */
+.stats{background:var(--off);border-bottom:1px solid var(--border);display:grid;grid-template-columns:repeat(4,1fr);}
+.st{padding:28px 20px;text-align:center;border-right:1px solid var(--border);}
+.st:last-child{border-right:none;}
+.st-n{font-size:34px;font-weight:800;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:block;line-height:1;margin-bottom:5px;}
+.st-l{font-size:12.5px;color:var(--gray);font-weight:500;}
+
+/* SERVICES */
+.svc-home{padding:90px 60px;}
+.svc-hd{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:44px;flex-wrap:wrap;gap:14px;}
+.svc-more{font-size:13.5px;font-weight:700;color:var(--violet);cursor:pointer;}
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--border);border-radius:16px;overflow:hidden;}
+.sc{background:var(--white);padding:32px 28px;cursor:pointer;transition:background .25s;position:relative;}
+.sc .dc-picto{display:block;width:56px;height:56px;margin-bottom:14px;opacity:0.85;transition:opacity .25s;}
+.sc:hover .dc-picto{opacity:1;}
+.sc:hover{background:var(--blue);}
+.sc-n{font-size:40px;font-weight:800;color:var(--border);line-height:1;margin-bottom:12px;transition:color .25s;}
+.sc:hover .sc-n{color:rgba(255,255,255,.08);}
+.sc-nm{font-size:17px;font-weight:700;color:var(--blue);margin-bottom:9px;transition:color .25s;}
+.sc:hover .sc-nm{color:rgba(255,255,255,.9);}
+.sc-d{font-size:13px;color:var(--gray);line-height:1.7;transition:color .25s;}
+.sc:hover .sc-d{color:rgba(255,255,255,.55);}
+.sc-tag{display:inline-block;margin-top:14px;font-size:9.5px;font-weight:700;letter-spacing:2px;text-transform:uppercase;background:var(--off);color:var(--blue);padding:3px 9px;border-radius:5px;transition:all .25s;}
+.sc:hover .sc-tag{background:var(--green);color:var(--blue);}
+
+/* CHIFFRES CLÉS */
+.chiffres{background:var(--blue);padding:90px 60px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+.ch-l h2{font-size:34px;font-weight:800;color:var(--white);line-height:1.2;margin-bottom:18px;}
+.ch-l p{font-size:15px;color:rgba(255,255,255,.6);line-height:1.8;margin-bottom:26px;}
+.certif{display:inline-flex;align-items:center;gap:12px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:13px 18px;}
+.certif-ico{width:30px;height:30px;border-radius:8px;background:var(--green);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;}
+.certif strong{display:block;font-size:13.5px;color:var(--white);}
+.certif small{font-size:11.5px;color:rgba(255,255,255,.4);}
+.ch-r{display:flex;flex-direction:column;}
+.chpt{display:flex;gap:18px;padding:20px 0;border-bottom:1px solid rgba(255,255,255,.08);}
+.chpt:last-child{border-bottom:none;}
+.chpt-n{font-size:20px;font-weight:800;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;flex-shrink:0;width:28px;line-height:1;}
+.chpt strong{display:block;font-size:14.5px;font-weight:700;color:var(--white);margin-bottom:3px;}
+.chpt span{font-size:13px;color:rgba(255,255,255,.5);line-height:1.6;}
+
+/* SIG BAND */
+.sig{padding:80px 60px;background:var(--grad);display:flex;justify-content:space-between;align-items:center;gap:36px;flex-wrap:wrap;}
+.sig-t h2{font-size:36px;font-weight:800;color:var(--blue);line-height:1.2;}
+.sig-t p{font-size:15px;color:rgba(0,56,83,.65);margin-top:8px;line-height:1.65;}
+.sig-a{display:flex;gap:12px;flex-wrap:wrap;}
+
+/* TEMOIGNAGES placeholder */
+.temoins{padding:80px 60px;background:var(--off);}
+.tem-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.tem-card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:28px;}
+.tem-stars{color:var(--green);font-size:16px;margin-bottom:12px;letter-spacing:2px;}
+.tem-txt{font-size:14px;color:var(--gray);line-height:1.75;margin-bottom:18px;font-style:italic;}
+.tem-auth{display:flex;align-items:center;gap:10px;}
+.tem-av{width:36px;height:36px;border-radius:50%;background:var(--grad);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:var(--blue);flex-shrink:0;}
+.tem-name{font-size:13.5px;font-weight:700;color:var(--blue);}
+.tem-role{font-size:12px;color:var(--gray);}
+
+/* CTA BAND */
+.cta-band{background:var(--blue);padding:80px 60px;display:flex;justify-content:space-between;align-items:center;gap:36px;flex-wrap:wrap;position:relative;overflow:hidden;}
+.cta-band::before{content:'';position:absolute;right:-80px;top:-80px;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,rgba(52,255,154,.1) 0%,transparent 70%);}
+.cta-band h2{font-size:32px;font-weight:800;color:var(--white);line-height:1.22;max-width:500px;}
+.cta-btns{display:flex;gap:12px;flex-wrap:wrap;}
+
+/* ── FOOTER ── */
+footer{background:var(--blue-dark);padding:56px 60px 26px;}
+.ft-inner{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px;padding-bottom:48px;border-bottom:1px solid rgba(255,255,255,.06);}
+.ft-brand p{font-size:13px;color:rgba(255,255,255,.4);line-height:1.75;max-width:270px;margin-top:14px;}
+.ft-col h4{font-size:10.5px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--green);margin-bottom:16px;}
+.ft-col ul{list-style:none;}
+.ft-col li{margin-bottom:10px;}
+.ft-col a{font-size:13px;color:rgba(255,255,255,.4);text-decoration:none;transition:color .2s;cursor:pointer;}
+.ft-col a:hover{color:var(--white);}
+.ft-bottom{display:flex;justify-content:space-between;align-items:center;font-size:12px;color:rgba(255,255,255,.22);flex-wrap:wrap;gap:10px;}
+.ft-bottom a{color:rgba(255,255,255,.22);text-decoration:none;}
+
+/* ══════════════════════════════
+   PAGE HERO COMMUN
+══════════════════════════════ */
+.phero{background:var(--blue);padding:76px 60px 66px;position:relative;overflow:hidden;}
+.phero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:var(--grad);}
+.phero.two{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
+.bc{font-size:13px;color:rgba(255,255,255,.4);margin-bottom:18px;}
+.bc a{color:var(--green);text-decoration:none;cursor:pointer;}
+.bc span{margin:0 8px;}
+.phero h1{font-size:42px;font-weight:800;color:var(--white);line-height:1.1;}
+.phero>p,.phero .pht>p{font-size:15.5px;color:rgba(255,255,255,.6);max-width:520px;margin-top:14px;line-height:1.78;}
+
+/* ══════════════════════════════
+   PAGE PRESTATIONS
+══════════════════════════════ */
+.fbar{background:var(--off);border-bottom:1px solid var(--border);padding:0 60px;overflow-x:auto;}
+.ftabs{display:flex;white-space:nowrap;}
+.ftab{padding:15px 22px;font-size:13.5px;font-weight:600;color:var(--gray);cursor:pointer;border-bottom:3px solid transparent;background:none;border-top:none;border-left:none;border-right:none;font-family:inherit;transition:all .2s;}
+.ftab:hover{color:var(--blue);}
+.ftab.active{color:var(--blue);border-bottom-color:var(--violet);}
+
+.dsect{padding:76px 60px;}
+.dg{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+.dc{border:1px solid var(--border);border-radius:14px;padding:28px;transition:all .25s, opacity .2s;cursor:pointer;position:relative;overflow:hidden;}
+.dc-picto{width:56px;height:56px;margin-bottom:14px;display:block;flex-shrink:0;}
+.dc-picto svg{width:56px;height:56px;display:block;}
+.dc::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad);opacity:0;transition:opacity .25s;}
+.dc:hover{border-color:transparent;box-shadow:0 8px 32px rgba(0,56,83,.1);transform:translateY(-2px);}
+.dc:hover::before{opacity:1;}
+.dc-badge{display:inline-block;font-size:9.5px;font-weight:700;letter-spacing:2px;text-transform:uppercase;background:var(--off);color:var(--gray);padding:3px 9px;border-radius:5px;margin-bottom:12px;}
+.dc:hover .dc-badge{background:rgba(52,255,154,.15);color:var(--green-dark);}
+.dc-n{font-size:36px;font-weight:800;color:var(--border);line-height:1;margin-bottom:10px;}
+.dc-nm{font-size:18px;font-weight:700;color:var(--blue);margin-bottom:3px;}
+.dc-full{font-size:11.5px;color:var(--violet);font-weight:600;margin-bottom:12px;}
+.dc-d{font-size:13px;color:var(--gray);line-height:1.7;margin-bottom:16px;}
+.dc-meta span{font-size:12px;color:var(--gray);display:block;margin-bottom:3px;}
+.dc-link{display:inline-flex;align-items:center;gap:5px;margin-top:14px;font-size:12.5px;font-weight:700;color:var(--violet);cursor:pointer;}
+
+.packs-sect{background:var(--off);padding:76px 60px;}
+.pg{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+.pack{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:28px 24px;transition:all .25s;position:relative;}
+.pack.feat{border-color:var(--violet);border-width:2px;}
+.pack:hover{box-shadow:0 12px 40px rgba(0,0,0,.08);}
+.pack-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--grad);color:var(--blue);font-size:9.5px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:4px 14px;border-radius:20px;white-space:nowrap;}
+.pack h3{font-size:21px;font-weight:800;color:var(--blue);margin-bottom:4px;}
+.pack-sub{font-size:12.5px;color:var(--gray);margin-bottom:18px;}
+.pack-li{list-style:none;margin-bottom:20px;}
+.pack-li li{font-size:13px;color:var(--blue);padding:7px 0;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:9px;}
+.pack-li li::before{content:'✓';color:var(--green);font-weight:800;}
+.pack-li li:last-child{border-bottom:none;}
+.pack-btn{display:block;text-align:center;background:var(--blue);color:var(--white);padding:12px;border-radius:9px;font-size:13.5px;font-weight:700;cursor:pointer;border:none;font-family:inherit;width:100%;transition:all .2s;}
+.pack-btn:hover{background:var(--blue-mid);}
+.pack.feat .pack-btn{background:var(--grad);color:var(--blue);}
+
+.process{padding:76px 60px;}
+.psteps{display:grid;grid-template-columns:repeat(4,1fr);position:relative;}
+.psteps::before{content:'';position:absolute;top:25px;left:13%;right:13%;height:2px;background:var(--grad);opacity:.22;}
+.pst{text-align:center;padding:0 12px;}
+.pst-n{width:50px;height:50px;border-radius:50%;background:var(--grad);display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:800;color:var(--blue);margin:0 auto 16px;position:relative;z-index:1;}
+.pst h4{font-size:15px;font-weight:700;color:var(--blue);margin-bottom:7px;}
+.pst p{font-size:13px;color:var(--gray);line-height:1.65;}
+
+/* ══════════════════════════════
+   PAGE PARTICULIER
+══════════════════════════════ */
+.sit-sect{padding:76px 60px;}
+.sg{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+.sk{border-radius:16px;overflow:hidden;border:1px solid var(--border);transition:box-shadow .25s;}
+.sk:hover{box-shadow:0 12px 40px rgba(0,0,0,.08);}
+.sk-hd{background:var(--blue);padding:24px 24px 20px;}
+.sk-ico{font-size:32px;display:block;margin-bottom:10px;}
+.sk-hd h3{font-size:18px;font-weight:700;color:var(--white);}
+.sk-hd p{font-size:12.5px;color:rgba(255,255,255,.5);margin-top:5px;line-height:1.5;}
+.sk-body{padding:20px 24px;}
+.sk-li{list-style:none;margin-bottom:16px;}
+.sk-li li{font-size:13px;color:var(--blue);padding:7px 0;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:9px;}
+.sk-li li::before{content:'→';color:var(--violet);font-weight:700;}
+.sk-li li:last-child{border-bottom:none;}
+.sk-btn{display:block;background:var(--grad);color:var(--blue);text-align:center;padding:12px;border-radius:9px;font-size:13px;font-weight:700;cursor:pointer;border:none;font-family:inherit;width:100%;transition:opacity .2s;}
+.sk-btn:hover{opacity:.9;}
+
+.faq-sect{background:var(--off);padding:76px 60px;}
+.fg{display:grid;grid-template-columns:1fr 1fr;gap:0 56px;}
+.fi{border-bottom:1px solid var(--border);padding:18px 0;cursor:pointer;}
+.fi:first-of-type,.fi:nth-of-type(2){border-top:1px solid var(--border);}
+.fi-q{display:flex;justify-content:space-between;align-items:center;gap:12px;}
+.fi-q strong{font-size:14px;font-weight:600;color:var(--blue);line-height:1.4;}
+.fi-ico{width:26px;height:26px;border-radius:50%;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:17px;color:var(--violet);flex-shrink:0;transition:transform .25s;}
+.fi.open .fi-ico{transform:rotate(45deg);}
+.fi-a{font-size:13.5px;color:var(--gray);line-height:1.75;max-height:0;overflow:hidden;transition:max-height .3s,padding .3s;}
+.fi.open .fi-a{max-height:200px;padding-top:11px;}
+
+/* ══════════════════════════════
+   PAGE PROFESSIONNELS
+══════════════════════════════ */
+.adv-g{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--border);border-radius:16px;overflow:hidden;}
+.av{background:var(--white);padding:30px 26px;transition:background .25s;}
+.av:hover{background:var(--off);}
+.av-ico{font-size:24px;margin-bottom:12px;display:block;}
+.av h3{font-size:16.5px;font-weight:700;color:var(--blue);margin-bottom:9px;}
+.av p{font-size:13px;color:var(--gray);line-height:1.7;}
+.pro-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+.prcard{background:var(--white);border:1px solid var(--border);border-radius:13px;padding:24px 18px;text-align:center;transition:all .25s;}
+.prcard:hover{border-color:var(--violet);box-shadow:0 8px 24px rgba(123,76,253,.1);transform:translateY(-2px);}
+.prcard-ico{font-size:30px;display:block;margin-bottom:11px;}
+.prcard-n{font-size:14.5px;font-weight:700;color:var(--blue);margin-bottom:7px;}
+.prcard p{font-size:12px;color:var(--gray);line-height:1.6;}
+
+/* MOCK EXTRANET */
+.ext-mock{background:var(--blue);border-radius:14px;overflow:hidden;box-shadow:0 20px 55px rgba(0,0,0,.22);}
+.ext-bar{background:#002a3d;padding:12px 16px;display:flex;align-items:center;gap:7px;}
+.edot{width:9px;height:9px;border-radius:50%;}
+.ext-inner{padding:20px;}
+.ext-h{font-size:12.5px;font-weight:700;color:var(--green);margin-bottom:12px;}
+.ext-row{display:flex;align-items:center;gap:9px;background:rgba(255,255,255,.05);border-radius:7px;padding:10px 13px;margin-bottom:7px;}
+.ext-row:last-child{margin-bottom:0;}
+.ext-s{font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:3px 7px;border-radius:9px;flex-shrink:0;}
+.ext-s.ok{background:rgba(52,255,154,.15);color:var(--green);}
+.ext-s.go{background:rgba(123,76,253,.15);color:#a78bfa;}
+.ext-t{font-size:11px;color:rgba(255,255,255,.58);flex:1;}
+.ext-d{font-size:9.5px;color:rgba(255,255,255,.22);flex-shrink:0;}
+
+/* ══════════════════════════════
+   PAGE DEVIS
+══════════════════════════════ */
+.dv-layout{display:grid;grid-template-columns:1fr 350px;padding:56px 60px;background:var(--white);}
+.dv-form{padding-right:56px;border-right:1px solid var(--border);}
+.dv-form h2{font-size:24px;font-weight:800;color:var(--blue);margin-bottom:5px;}
+.dv-form>p{font-size:13.5px;color:var(--gray);margin-bottom:30px;line-height:1.6;}
+.ssteps{display:flex;margin-bottom:32px;border-radius:9px;overflow:hidden;border:1px solid var(--border);}
+.sstep{flex:1;padding:10px 7px;text-align:center;font-size:11.5px;font-weight:600;color:var(--gray);background:var(--white);}
+.sstep.active{background:var(--blue);color:var(--white);}
+.sstep.done{background:rgba(52,255,154,.15);color:var(--green-dark);}
+.fsect{margin-bottom:28px;}
+.fsect h3{font-size:15.5px;font-weight:700;color:var(--blue);margin-bottom:14px;padding-bottom:9px;border-bottom:1px solid var(--border);}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-bottom:13px;}
+.frow.full{grid-template-columns:1fr;}
+.ff{display:flex;flex-direction:column;gap:5px;}
+.ff label{font-size:12px;font-weight:600;color:var(--blue);}
+.ff label .req{color:var(--violet);}
+.ff input,.ff select,.ff textarea{border:1.5px solid var(--border);background:var(--white);padding:10px 13px;font-size:13.5px;font-family:inherit;color:var(--blue);border-radius:8px;outline:none;transition:border-color .2s;width:100%;}
+.ff input:focus,.ff select:focus,.ff textarea:focus{border-color:var(--violet);}
+.ff textarea{resize:vertical;min-height:85px;}
+.ff select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='7'%3E%3Cpath d='M1 1l4.5 4.5L10 1' stroke='%2364748b' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 13px center;padding-right:36px;}
+.tg{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-bottom:13px;}
+.tc{border:1.5px solid var(--border);border-radius:9px;padding:13px 9px;text-align:center;cursor:pointer;transition:all .2s;position:relative;}
+.tc input{position:absolute;opacity:0;width:0;height:0;}
+.tc:hover{border-color:var(--violet);}
+.tc.sel{border-color:var(--violet);background:rgba(123,76,253,.05);}
+.ti{font-size:20px;display:block;margin-bottom:4px;}
+.tl{font-size:11.5px;font-weight:600;color:var(--blue);}
+.dckg{display:grid;grid-template-columns:repeat(2,1fr);gap:9px;}
+.dck{display:flex;align-items:flex-start;gap:9px;background:var(--off);border:1.5px solid var(--border);border-radius:9px;padding:11px 13px;cursor:pointer;transition:border-color .2s;}
+.dck:hover{border-color:var(--violet);}
+.dck input{width:14px;height:14px;accent-color:var(--violet);flex-shrink:0;margin-top:2px;cursor:pointer;}
+.dck strong{display:block;font-size:12.5px;font-weight:600;color:var(--blue);}
+.dck span{font-size:11px;color:var(--gray);}
+.ff-foot{display:flex;align-items:center;gap:16px;margin-top:8px;flex-wrap:wrap;}
+.btn-send{background:var(--grad);color:var(--blue);padding:14px 34px;font-size:14.5px;font-weight:700;border:none;border-radius:9px;cursor:pointer;font-family:inherit;transition:opacity .2s;}
+.btn-send:hover{opacity:.9;}
+.fn{font-size:11.5px;color:var(--gray);line-height:1.55;}
+.sbox{display:none;background:#f0fdf4;border:1.5px solid #86efac;border-radius:11px;padding:22px;margin-top:18px;text-align:center;}
+.sbox.show{display:block;}
+.sbox h3{font-size:17px;font-weight:700;color:#166534;margin-bottom:5px;}
+.sbox p{font-size:13.5px;color:#166534;}
+/* SIDEBAR DEVIS */
+.dv-sb{padding-left:40px;}
+.sb-b{background:var(--off);border:1px solid var(--border);border-radius:13px;padding:22px;margin-bottom:16px;}
+.sb-b h4{font-size:14.5px;font-weight:700;color:var(--blue);margin-bottom:13px;}
+.sb-pt{display:flex;gap:11px;margin-bottom:12px;align-items:flex-start;}
+.sb-pt:last-child{margin-bottom:0;}
+.sb-ic{width:28px;height:28px;border-radius:7px;background:var(--grad);display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;}
+.sb-pt strong{display:block;font-size:13px;font-weight:600;color:var(--blue);}
+.sb-pt span{font-size:11.5px;color:var(--gray);}
+.sb-tel{background:var(--blue);border-radius:13px;padding:20px;text-align:center;}
+.sb-tel p{font-size:12.5px;color:rgba(255,255,255,.5);margin-bottom:8px;line-height:1.6;}
+.sb-tel a{display:block;font-size:19px;font-weight:800;color:var(--green);text-decoration:none;margin-bottom:3px;}
+.sb-tel small{font-size:11px;color:rgba(255,255,255,.3);}
+
+/* ══════════════════════════════
+   PAGE BLOG
+══════════════════════════════ */
+.blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;padding:76px 60px;}
+.ba{border:1px solid var(--border);border-radius:14px;overflow:hidden;transition:all .25s;cursor:pointer;}
+.ba:hover{box-shadow:0 10px 36px rgba(0,0,0,.1);transform:translateY(-2px);}
+.ba-img{height:180px;background:var(--grad);display:flex;align-items:center;justify-content:center;font-size:48px;position:relative;}
+.ba-cat{position:absolute;bottom:14px;left:16px;background:var(--blue);color:var(--white);font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:4px 10px;border-radius:5px;}
+.ba-body{padding:20px 22px;}
+.ba-date{font-size:11.5px;color:var(--gray);margin-bottom:8px;}
+.ba h3{font-size:16px;font-weight:700;color:var(--blue);margin-bottom:8px;line-height:1.4;}
+.ba p{font-size:13px;color:var(--gray);line-height:1.65;}
+.ba-more{display:inline-flex;align-items:center;gap:5px;font-size:12.5px;font-weight:700;color:var(--violet);margin-top:14px;}
+
+/* ══════════════════════════════
+   PAGE ESPACE CLIENT
+══════════════════════════════ */
+.espace-client{padding:76px 60px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+.ec-l h2{font-size:34px;font-weight:800;color:var(--blue);margin-bottom:16px;line-height:1.2;}
+.ec-l p{font-size:15px;color:var(--gray);line-height:1.8;margin-bottom:28px;}
+.ec-feat{display:flex;flex-direction:column;}
+.ecf{display:flex;gap:14px;padding:16px 0;border-bottom:1px solid var(--border);align-items:flex-start;}
+.ecf:last-child{border-bottom:none;}
+.ecf-ic{width:30px;height:30px;border-radius:7px;background:var(--grad);display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;}
+.ecf strong{display:block;font-size:13.5px;font-weight:600;color:var(--blue);margin-bottom:2px;}
+.ecf span{font-size:12.5px;color:var(--gray);}
+/* Connexion box */
+.conn-box{background:var(--off);border:1px solid var(--border);border-radius:16px;padding:36px;}
+.conn-box h3{font-size:20px;font-weight:800;color:var(--blue);margin-bottom:6px;}
+.conn-box>p{font-size:13.5px;color:var(--gray);margin-bottom:26px;line-height:1.6;}
+.conn-tabs{display:flex;border:1px solid var(--border);border-radius:9px;overflow:hidden;margin-bottom:24px;}
+.ctab{flex:1;padding:10px;text-align:center;font-size:13px;font-weight:600;color:var(--gray);background:var(--white);cursor:pointer;border:none;font-family:inherit;transition:all .2s;}
+.ctab.active{background:var(--blue);color:var(--white);}
+.conn-note{font-size:12px;color:var(--gray);text-align:center;margin-top:14px;line-height:1.6;}
+.conn-note a{color:var(--violet);font-weight:600;}
+
+/* ══════════════════════════════
+   RESPONSIVE
+══════════════════════════════ */
+@media(max-width:1100px){
+  nav{padding:0 30px;}
+  .hero{grid-template-columns:1fr;min-height:auto;}
+  .hero-l{padding:60px 30px 36px;}
+  h1.hero-h{font-size:38px;}
+  .hero-r{padding:34px 30px 54px;}
+  .stats{grid-template-columns:repeat(2,1fr);}
+  .st{border-right:none;border-bottom:1px solid var(--border);}
+  .st:nth-child(odd){border-right:1px solid var(--border);}
+  .st:nth-last-child(-n+2){border-bottom:none;}
+  .svc-home{padding:66px 30px;}
+  .svc-grid{grid-template-columns:repeat(2,1fr);}
+  .chiffres{grid-template-columns:1fr;gap:46px;padding:66px 30px;}
+  .sig{padding:60px 30px;}
+  .temoins{padding:60px 30px;}
+  .tem-grid{grid-template-columns:1fr;}
+  .cta-band{padding:60px 30px;}
+  footer{padding:48px 30px 22px;}
+  .ft-inner{grid-template-columns:1fr 1fr;gap:36px;}
+  .phero{padding:60px 30px 54px;}
+  .phero.two{grid-template-columns:1fr;}
+  .phero h1{font-size:32px;}
+  .fbar{padding:0 30px;}
+  .dsect{padding:60px 30px;}
+  .dg{grid-template-columns:repeat(2,1fr);}
+  .packs-sect{padding:60px 30px;}
+  .pg{grid-template-columns:1fr;}
+  .process{padding:60px 30px;}
+  .psteps{grid-template-columns:repeat(2,1fr);gap:32px;}
+  .psteps::before{display:none;}
+  .sit-sect{padding:60px 30px;}
+  .sg{grid-template-columns:1fr;}
+  .faq-sect{padding:60px 30px;}
+  .fg{grid-template-columns:1fr;}
+  .fg .fi:nth-of-type(2){border-top:none;}
+  .adv-g{grid-template-columns:repeat(2,1fr);}
+  .pro-grid{grid-template-columns:repeat(2,1fr);}
+  .dv-layout{grid-template-columns:1fr;padding:40px 30px;gap:36px;}
+  .dv-form{padding-right:0;border-right:none;border-bottom:1px solid var(--border);padding-bottom:36px;}
+  .dv-sb{padding-left:0;}
+  .blog-grid{padding:60px 30px;}
+  .espace-client{padding:60px 30px;grid-template-columns:1fr;gap:44px;}
+}
+@media(max-width:640px){
+  nav{padding:0 18px;height:62px;}
+  .nav-links,.nav-r .btn-nav,.nav-r .btn-nav-ghost{display:none;}
+  .hamburger{display:flex;}
+  .mob-drawer{display:flex;top:62px;}
+  .page{padding-top:62px!important;}
+  .hero-l{padding:44px 18px 30px;}
+  h1.hero-h{font-size:30px;}
+  .hero-sig{font-size:17px;}
+  .hero-sub{font-size:14px;}
+  .hero-btns{flex-direction:column;}
+  .hero-btns .btn{width:100%;justify-content:center;}
+  .hero-r{padding:28px 18px 44px;}
+  .ecard{max-width:100%;}
+  .svc-home{padding:44px 18px;}
+  .svc-grid{grid-template-columns:1fr;}
+  .h2{font-size:26px;}
+  .chiffres{padding:44px 18px;}
+  .ch-l h2{font-size:26px;}
+  .sig{padding:44px 18px;flex-direction:column;align-items:flex-start;}
+  .sig-t h2{font-size:26px;}
+  .sig-a{width:100%;}
+  .sig-a .btn{width:100%;justify-content:center;}
+  .temoins{padding:44px 18px;}
+  .cta-band{padding:44px 18px;flex-direction:column;align-items:flex-start;}
+  .cta-band h2{font-size:24px;}
+  .cta-btns{flex-direction:column;width:100%;}
+  .cta-btns .btn{width:100%;justify-content:center;}
+  footer{padding:44px 18px 22px;}
+  .ft-inner{grid-template-columns:1fr;gap:26px;}
+  .ft-bottom{flex-direction:column;align-items:flex-start;}
+  .phero{padding:42px 18px 38px;}
+  .phero h1{font-size:26px;}
+  .fbar{padding:0 14px;}
+  .dsect{padding:44px 18px;}
+  .dg{grid-template-columns:1fr;}
+  .packs-sect,.process{padding:44px 18px;}
+  .psteps{grid-template-columns:1fr;gap:26px;}
+  .sit-sect,.faq-sect{padding:44px 18px;}
+  .adv-g{grid-template-columns:1fr;}
+  .pro-grid{grid-template-columns:1fr 1fr;}
+  .dv-layout{padding:28px 18px;}
+  .frow{grid-template-columns:1fr;}
+  .dckg{grid-template-columns:1fr;}
+  .ssteps{display:none;}
+  .blog-grid{padding:44px 18px;grid-template-columns:1fr;}
+  .espace-client{padding:44px 18px;}
+}
+
+/* ── CONFIRMATION DEVIS ── */
+.sbox{display:none;margin-top:24px;border-radius:14px;overflow:hidden;border:1.5px solid #86efac;}
+.sbox.show{display:block;}
+.sbox-check{width:56px;height:56px;border-radius:50%;background:var(--grad);display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:800;color:var(--blue);margin:32px auto 16px;}
+.sbox h3{font-size:20px;font-weight:800;color:var(--blue);text-align:center;margin-bottom:6px;}
+.sbox>p{font-size:13.5px;color:var(--gray);text-align:center;margin-bottom:28px;}
+.sbox-steps{display:flex;flex-direction:column;gap:0;background:var(--off);padding:20px 28px;border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+.sbox-step{display:flex;gap:16px;align-items:center;padding:14px 0;border-bottom:1px solid var(--border);}
+.sbox-step:last-child{border-bottom:none;}
+.sbox-step-num{width:32px;height:32px;border-radius:50%;background:var(--border);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:var(--gray);flex-shrink:0;}
+.sbox-step-num.done{background:var(--green);color:var(--blue);}
+.sbox-step-num.active{background:var(--blue);color:var(--white);}
+.sbox-step-body strong{display:block;font-size:14px;font-weight:600;color:var(--blue);}
+.sbox-step-body span{font-size:12.5px;color:var(--gray);}
+.sbox-actions{padding:24px 28px;display:flex;flex-direction:column;align-items:center;gap:14px;background:var(--white);}
+.sbox-tel{font-size:14px;color:var(--gray);text-decoration:none;}
+.sbox-tel strong{color:var(--blue);}
+
+/* ── PAGE RDV ── */
+.rdv-layout{display:grid;grid-template-columns:1fr 340px;padding:56px 60px;gap:0;background:var(--white);}
+.rdv-main{padding-right:56px;border-right:1px solid var(--border);}
+.rdv-main h2{font-size:26px;font-weight:800;color:var(--blue);margin-bottom:6px;}
+.rdv-main>p{font-size:14px;color:var(--gray);margin-bottom:32px;line-height:1.65;}
+.cal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;}
+.cal-header h3{font-size:18px;font-weight:700;color:var(--blue);}
+.cal-nav{display:flex;gap:8px;}
+.cal-nav button{width:32px;height:32px;border-radius:8px;border:1.5px solid var(--border);background:var(--white);cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;transition:all .2s;color:var(--blue);}
+.cal-nav button:hover{border-color:var(--blue);}
+.cal-grid-head{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-bottom:6px;}
+.cal-day-name{text-align:center;font-size:11.5px;font-weight:700;color:var(--gray);padding:6px 0;letter-spacing:0.5px;text-transform:uppercase;}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-bottom:28px;}
+.cal-day{aspect-ratio:1;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:13.5px;font-weight:500;cursor:pointer;transition:all .2s;border:1.5px solid transparent;color:var(--blue);}
+.cal-day:hover:not(.empty):not(.past){background:var(--off);border-color:var(--border);}
+.cal-day.available{color:var(--blue);}
+.cal-day.selected{background:var(--blue);color:var(--white)!important;border-color:var(--blue);}
+.cal-day.today{border-color:var(--violet);color:var(--violet);font-weight:700;}
+.cal-day.past{color:var(--border);cursor:not-allowed;}
+.cal-day.empty{cursor:default;}
+.cal-day.has-slots::after{content:'';width:5px;height:5px;border-radius:50%;background:var(--green);position:absolute;bottom:4px;left:50%;transform:translateX(-50%);}
+.cal-day{position:relative;}
+
+.slots-section{margin-bottom:28px;}
+.slots-section h4{font-size:14px;font-weight:700;color:var(--blue);margin-bottom:14px;}
+.slots-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;}
+.slot{padding:10px 6px;border:1.5px solid var(--border);border-radius:8px;text-align:center;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;color:var(--blue);background:var(--white);}
+.slot:hover{border-color:var(--violet);color:var(--violet);}
+.slot.selected{background:var(--violet);color:var(--white);border-color:var(--violet);}
+.slot.full{color:var(--border);cursor:not-allowed;border-color:var(--border);}
+
+.rdv-confirm-btn{width:100%;padding:15px;background:var(--grad);color:var(--blue);font-size:15px;font-weight:700;border:none;border-radius:10px;cursor:pointer;font-family:inherit;transition:opacity .2s;margin-top:8px;}
+.rdv-confirm-btn:hover{opacity:.9;}
+.rdv-confirm-btn:disabled{opacity:.4;cursor:not-allowed;}
+
+.rdv-sidebar{padding-left:40px;}
+.rdv-recap{background:var(--off);border:1px solid var(--border);border-radius:13px;padding:22px;margin-bottom:16px;}
+.rdv-recap h4{font-size:14.5px;font-weight:700;color:var(--blue);margin-bottom:14px;}
+.rdv-recap-item{display:flex;gap:10px;align-items:flex-start;margin-bottom:11px;}
+.rdv-recap-item:last-child{margin-bottom:0;}
+.rdv-recap-ic{width:26px;height:26px;border-radius:7px;background:var(--grad);display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;}
+.rdv-recap-item strong{display:block;font-size:13px;font-weight:600;color:var(--blue);}
+.rdv-recap-item span{font-size:12px;color:var(--gray);}
+.rdv-selected-info{background:var(--blue);border-radius:13px;padding:20px;text-align:center;}
+.rdv-selected-info p{font-size:13px;color:rgba(255,255,255,.55);margin-bottom:8px;}
+.rdv-selected-date{font-size:18px;font-weight:800;color:var(--white);margin-bottom:4px;}
+.rdv-selected-time{font-size:14px;color:var(--green);font-weight:600;}
+.rdv-success{display:none;text-align:center;padding:40px 20px;}
+.rdv-success.show{display:block;}
+.rdv-success-ico{font-size:52px;margin-bottom:16px;}
+.rdv-success h3{font-size:22px;font-weight:800;color:var(--blue);margin-bottom:10px;}
+.rdv-success p{font-size:14.5px;color:var(--gray);line-height:1.75;margin-bottom:24px;}
+.rdv-success-card{background:var(--off);border:1px solid var(--border);border-radius:12px;padding:20px;margin-bottom:24px;text-align:left;}
+.rdv-success-card .rs-row{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+.rdv-success-card .rs-row:last-child{margin-bottom:0;}
+.rdv-success-card .rs-ico{font-size:16px;}
+.rdv-success-card .rs-text{font-size:13.5px;color:var(--blue);font-weight:500;}
+
+/* ── CHATBOT ── */
+.chat-bubble{
+  position:fixed;bottom:28px;right:28px;z-index:1000;
+  width:58px;height:58px;border-radius:50%;
+  background:var(--grad);
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 20px rgba(123,76,253,.4);
+  cursor:pointer;transition:all .3s;border:none;font-family:inherit;
+  animation:bot-pulse 3s infinite;
+}
+.chat-bubble:hover{transform:scale(1.1);}
+.chat-bubble svg{width:26px;height:26px;fill:white;flex-shrink:0;}
+.chat-badge{
+  position:absolute;top:-3px;right:-3px;
+  width:18px;height:18px;border-radius:50%;
+  background:var(--green);border:2px solid white;
+  font-size:10px;font-weight:800;color:var(--blue);
+  display:flex;align-items:center;justify-content:center;
+}
+@keyframes bot-pulse{0%,100%{box-shadow:0 4px 20px rgba(123,76,253,.4);}50%{box-shadow:0 4px 28px rgba(123,76,253,.6),0 0 0 8px rgba(123,76,253,.1);}}
+
+.chat-window{
+  position:fixed;bottom:100px;right:28px;z-index:1000;
+  width:360px;height:520px;
+  background:var(--white);border-radius:18px;
+  box-shadow:0 20px 60px rgba(0,0,0,.18);
+  display:flex;flex-direction:column;
+  opacity:0;pointer-events:none;transform:translateY(16px) scale(.96);
+  transition:all .28s cubic-bezier(.34,1.56,.64,1);
+  overflow:hidden;
+}
+.chat-window.open{opacity:1;pointer-events:all;transform:translateY(0) scale(1);}
+.chat-head{
+  background:var(--blue);padding:16px 18px;
+  display:flex;align-items:center;gap:12px;flex-shrink:0;
+}
+.chat-head-av{
+  width:38px;height:38px;border-radius:50%;
+  background:var(--grad);display:flex;align-items:center;justify-content:center;
+  font-size:18px;flex-shrink:0;
+}
+.chat-head-info strong{display:block;font-size:14px;font-weight:700;color:var(--white);}
+.chat-head-info span{font-size:12px;color:rgba(255,255,255,.55);display:flex;align-items:center;gap:5px;}
+.chat-head-info span::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--green);flex-shrink:0;}
+.chat-close{margin-left:auto;background:none;border:none;cursor:pointer;color:rgba(255,255,255,.6);font-size:20px;line-height:1;padding:4px;transition:color .2s;}
+.chat-close:hover{color:var(--white);}
+.chat-msgs{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px;scroll-behavior:smooth;}
+.chat-msgs::-webkit-scrollbar{width:4px;}
+.chat-msgs::-webkit-scrollbar-track{background:transparent;}
+.chat-msgs::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px;}
+.msg{max-width:82%;display:flex;flex-direction:column;gap:3px;}
+.msg.bot{align-self:flex-start;}
+.msg.user{align-self:flex-end;}
+.msg-bubble{padding:10px 14px;border-radius:14px;font-size:13.5px;line-height:1.6;}
+.msg.bot .msg-bubble{background:var(--off);color:var(--blue);border-bottom-left-radius:4px;}
+.msg.user .msg-bubble{background:var(--blue);color:var(--white);border-bottom-right-radius:4px;}
+.msg-time{font-size:10.5px;color:var(--gray);padding:0 4px;}
+.msg.user .msg-time{text-align:right;}
+.chat-typing{align-self:flex-start;background:var(--off);border-radius:14px;border-bottom-left-radius:4px;padding:12px 16px;display:none;}
+.chat-typing.show{display:flex;gap:4px;align-items:center;}
+.chat-typing span{width:7px;height:7px;border-radius:50%;background:var(--gray);animation:typing 1.2s infinite;}
+.chat-typing span:nth-child(2){animation-delay:.2s;}
+.chat-typing span:nth-child(3){animation-delay:.4s;}
+@keyframes typing{0%,60%,100%{opacity:.3;transform:translateY(0);}30%{opacity:1;transform:translateY(-4px);}}
+.chat-suggestions{padding:0 12px 10px;display:flex;flex-wrap:wrap;gap:6px;flex-shrink:0;}
+.chat-sug{background:var(--off);border:1px solid var(--border);border-radius:20px;padding:6px 12px;font-size:12px;font-weight:600;color:var(--blue);cursor:pointer;transition:all .2s;font-family:inherit;}
+.chat-sug:hover{background:var(--blue);color:var(--white);border-color:var(--blue);}
+.chat-foot{padding:12px 14px;border-top:1px solid var(--border);display:flex;gap:8px;flex-shrink:0;}
+.chat-input{flex:1;border:1.5px solid var(--border);border-radius:10px;padding:10px 14px;font-size:13.5px;font-family:inherit;color:var(--blue);outline:none;transition:border-color .2s;resize:none;height:42px;}
+.chat-input:focus{border-color:var(--violet);}
+.chat-send{width:42px;height:42px;border-radius:10px;background:var(--grad);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:opacity .2s;flex-shrink:0;}
+.chat-send:hover{opacity:.9;}
+.chat-send svg{width:18px;height:18px;fill:white;}
+
+@media(max-width:1100px){
+  .rdv-layout{grid-template-columns:1fr;padding:40px 30px;gap:40px;}
+  .rdv-main{padding-right:0;border-right:none;border-bottom:1px solid var(--border);padding-bottom:40px;}
+  .rdv-sidebar{padding-left:0;}
+  .slots-grid{grid-template-columns:repeat(5,1fr);}
+}
+@media(max-width:640px){
+  .rdv-layout{padding:28px 18px;}
+  .slots-grid{grid-template-columns:repeat(3,1fr);}
+  .chat-bubble{bottom:20px;right:20px;width:52px;height:52px;}
+  .chat-window{width:calc(100vw - 24px);right:12px;bottom:86px;height:460px;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div style="display:flex;align-items:center;gap:32px;">
+    <div class="logo-wrap" onclick="showPage('accueil')">
+      <div class="logo-pill"><div class="logo-orb"></div><div class="logo-16am">16am</div></div>
+      <div class="logo-base">Diagnostics <div class="ldot"></div> État des lieux</div>
+    </div>
+    <ul class="nav-links">
+      <li><a onclick="showPage('prestations')" id="nav-prestations">Services</a></li>
+      <li><a onclick="showPage('particulier')" id="nav-particulier">Particuliers</a></li>
+      <li><a onclick="showPage('professionnels')" id="nav-professionnels">Professionnels</a></li>
+      <li><a onclick="showPage('blog')" id="nav-blog">Guides & Infos</a></li>
+    </ul>
+  </div>
+  <div class="nav-r">
+    <button class="btn-nav-ghost" onclick="showPage('espace-client')">Espace client</button>
+    <button class="btn-nav" onclick="showPage('devis')">Devis gratuit</button>
+    <button class="hamburger" id="ham"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="mob-drawer" id="mobDr">
+  <a onclick="showPage('prestations');cMenu()">Services & Diagnostics</a>
+  <a onclick="showPage('particulier');cMenu()">Espace Particulier</a>
+  <a onclick="showPage('professionnels');cMenu()">Espace Professionnel</a>
+  <a onclick="showPage('blog');cMenu()">Guides & Infos</a>
+  <a onclick="showPage('espace-client');cMenu()">Espace Client</a>
+  <a onclick="showPage('devis');cMenu()" class="mob-cta">Devis gratuit</a>
+</div>
+
+<!-- ═══════ PAGE ACCUEIL ═══════ -->
+<div class="page active" id="page-accueil">
+
+<section class="hero">
+  <div class="hero-l">
+    <div class="hero-eyebrow">
+      <div class="hero-dot hero-dot2"></div>
+      Rhône-Alpes Auvergne — Équipe de 16 diagnostiqueurs
+      <div class="hero-dot"></div>
+    </div>
+    <h1 class="hero-h">Diagnostics immobiliers.<br>Simple, <span class="grad-t">efficace.</span></h1>
+    <div class="hero-sig">Et tout devient plus simple !</div>
+    <p class="hero-sub">16am réalise l'ensemble de vos diagnostics immobiliers et états des lieux avec réactivité et précision. Rapport remis <strong style="color:var(--white)">immédiatement après l'intervention.</strong></p>
+    <div class="hero-btns">
+      <button class="btn btn-green" onclick="showPage('devis')">Demander un devis gratuit</button>
+      <button class="btn btn-outline-w" onclick="showPage('prestations')">Nos diagnostics →</button>
+    </div>
+    <div class="hero-proof">
+      <div class="proof-item"><div class="proof-ck">✓</div>Rapport immédiat</div>
+      <div class="proof-item"><div class="proof-ck">✓</div>Intervention sous 24h</div>
+      <div class="proof-item"><div class="proof-ck">✓</div>16 diagnostiqueurs</div>
+      <div class="proof-item"><div class="proof-ck">✓</div>Clé en main</div>
+    </div>
+  </div>
+  <div class="hero-r">
+    <div class="ecard" onclick="showPage('particulier')">
+      <div class="ecard-top"><div class="ecard-ico">🏠</div><div class="ecard-title">Vous êtes particulier</div></div>
+      <div class="ecard-desc">Vente, location, travaux — tous vos diagnostics obligatoires pris en charge, de la commande au rapport.</div>
+      <div class="ecard-cta">Accéder à l'espace particulier →</div>
+    </div>
+    <div class="ecard" onclick="showPage('professionnels')">
+      <div class="ecard-top"><div class="ecard-ico">🏢</div><div class="ecard-title">Vous êtes professionnel</div></div>
+      <div class="ecard-desc">Syndics, administrateurs de biens, agences — plateforme de commande dédiée, tarifs volume, interlocuteur attitré.</div>
+      <div class="ecard-cta">Accéder à l'espace pro →</div>
+    </div>
+  </div>
+</section>
+
+<div class="stats">
+  <div class="st"><span class="st-n">16</span><span class="st-l">Diagnostiqueurs en équipe</span></div>
+  <div class="st"><span class="st-n">24h</span><span class="st-l">Délai d'intervention max</span></div>
+  <div class="st"><span class="st-n">Immédiat</span><span class="st-l">Remise du rapport</span></div>
+  <div class="st"><span class="st-n">RA</span><span class="st-l">Rhône-Alpes Auvergne</span></div>
+</div>
+
+<section class="svc-home">
+  <div class="svc-hd">
+    <div><span class="tag tag-g">Nos prestations</span><h2 class="h2">Des diagnostics complets,<br>une équipe de proximité</h2></div>
+    <a class="svc-more" onclick="showPage('prestations')">Voir tous les diagnostics →</a>
+  </div>
+  <div class="svc-grid">
+    <div class="sc"><svg class="dc-picto" width="56" height="56" viewBox="0 0 56 56" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="svgh1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#34ff9a"/><stop offset="100%" stop-color="#7b4cfd"/></linearGradient></defs><circle cx="28" cy="28" r="27" fill="#0d2d40" stroke="url(#svgh1)" stroke-width="1.5"/><rect x="15" y="17" width="22" height="4" rx="2" fill="url(#svgh1)" opacity="0.9"/><rect x="15" y="24" width="17" height="4" rx="2" fill="url(#svgh1)" opacity="0.75"/><rect x="15" y="31" width="12" height="4" rx="2" fill="url(#svgh1)" opacity="0.6"/><rect x="15" y="38" width="7" height="4" rx="2" fill="url(#svgh1)" opacity="0.45"/></svg><div class="sc-nm">DPE</div><p class="sc-d">Performance énergétique — obligatoire vente & location. Rapport remis immédiatement.</p><span class="sc-tag">Vente & Location</span></div>
+    <div class="sc"><svg class="dc-picto" width="56" height="56" viewBox="0 0 56 56" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="svgh2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#34ff9a"/><stop offset="100%" stop-color="#7b4cfd"/></linearGradient></defs><circle cx="28" cy="28" r="27" fill="#0d2d40" stroke="url(#svgh2)" stroke-width="1.5"/><text x="28" y="37" text-anchor="middle" font-size="26" font-family="serif" font-weight="700" fill="url(#svgh2)">a</text></svg><div class="sc-nm">Amiante</div><p class="sc-d">Repérage certifié des matériaux amiantés, parties privatives et communes d'immeubles.</p><span class="sc-tag">Avant travaux</span></div>
+    <div class="sc"><svg class="dc-picto" width="56" height="56" viewBox="0 0 56 56" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="svgh3" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#34ff9a"/><stop offset="100%" stop-color="#7b4cfd"/></linearGradient></defs><circle cx="28" cy="28" r="27" fill="#0d2d40" stroke="url(#svgh3)" stroke-width="1.5"/><text x="28" y="36" text-anchor="middle" font-size="20" font-family="sans-serif" font-weight="800" fill="url(#svgh3)">Pb</text></svg><div class="sc-nm">Plomb (CREP)</div><p class="sc-d">Constat de risque d'exposition au plomb pour les biens construits avant 1949.</p><span class="sc-tag">Vente & Location</span></div>
+    <div class="sc"><svg class="dc-picto" width="56" height="56" viewBox="0 0 56 56" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="svgh4" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#34ff9a"/><stop offset="100%" stop-color="#7b4cfd"/></linearGradient></defs><circle cx="28" cy="28" r="27" fill="#0d2d40" stroke="url(#svgh4)" stroke-width="1.5"/><polygon points="31,14 20,29 27,29 25,42 36,27 29,27" fill="url(#svgh4)"/><path d="M22 38 C20 36 18 33 18 30" fill="none" stroke="url(#svgh4)" stroke-width="1.8" stroke-linecap="round" opacity="0.5"/></svg><div class="sc-nm">Électricité & Gaz</div><p class="sc-d">Vérification de la conformité des installations de plus de 15 ans.</p><span class="sc-tag">Sécurité</span></div>
+    <div class="sc"><svg class="dc-picto" width="56" height="56" viewBox="0 0 56 56" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="svgh5" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#34ff9a"/><stop offset="100%" stop-color="#7b4cfd"/></linearGradient></defs><circle cx="28" cy="28" r="27" fill="#0d2d40" stroke="url(#svgh5)" stroke-width="1.5"/><rect x="16" y="15" width="16" height="20" rx="2" fill="none" stroke="url(#svgh5)" stroke-width="2"/><rect x="20" y="12" width="8" height="5" rx="1.5" fill="url(#svgh5)" opacity="0.7"/><line x1="19" y1="22" x2="28" y2="22" stroke="url(#svgh5)" stroke-width="1.8" stroke-linecap="round"/><line x1="19" y1="26" x2="28" y2="26" stroke="url(#svgh5)" stroke-width="1.8" stroke-linecap="round"/><rect x="29" y="30" width="12" height="12" rx="2" fill="#0d2d40" stroke="url(#svgh5)" stroke-width="1.8"/><line x1="32" y1="36" x2="38" y2="36" stroke="url(#svgh5)" stroke-width="1.8" stroke-linecap="round"/><line x1="35" y1="33" x2="35" y2="39" stroke="url(#svgh5)" stroke-width="1.8" stroke-linecap="round"/></svg><div class="sc-nm">PPT / Plan Pluriannuel</div><p class="sc-d">Plan pluriannuel de travaux pour les copropriétés — expertise complète et rapport détaillé.</p><span class="sc-tag">Copropriété</span></div>
+    <div class="sc"><svg class="dc-picto" width="56" height="56" viewBox="0 0 56 56" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="svgh6" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#34ff9a"/><stop offset="100%" stop-color="#7b4cfd"/></linearGradient></defs><circle cx="28" cy="28" r="27" fill="#0d2d40" stroke="url(#svgh6)" stroke-width="1.5"/><rect x="17" y="14" width="18" height="24" rx="2.5" fill="none" stroke="url(#svgh6)" stroke-width="2"/><line x1="21" y1="21" x2="31" y2="21" stroke="url(#svgh6)" stroke-width="1.8" stroke-linecap="round"/><line x1="21" y1="25" x2="31" y2="25" stroke="url(#svgh6)" stroke-width="1.8" stroke-linecap="round"/><line x1="21" y1="29" x2="27" y2="29" stroke="url(#svgh6)" stroke-width="1.8" stroke-linecap="round"/><circle cx="34" cy="36" r="6" fill="#0d2d40" stroke="url(#svgh6)" stroke-width="1.8"/><path d="M31 36 L33 38 L37 34" stroke="url(#svgh6)" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><div class="sc-nm">État des lieux</div><p class="sc-d">Constats contradictoires d'entrée et de sortie, logements et locaux professionnels.</p><span class="sc-tag">Location</span></div>
+  </div>
+</section>
+
+<section class="chiffres">
+  <div class="ch-l">
+    <span class="tag tag-w">Notre approche</span>
+    <h2>Simple, efficace,<br>vraiment là pour vous</h2>
+    <p>En Rhône-Alpes Auvergne, 16am accompagne syndics, administrateurs de biens et particuliers avec une équipe de 16 diagnostiqueurs dédiés. Pas de sous-traitance, un service clé en main.</p>
+    <div class="certif"><div class="certif-ico">16</div><div><strong>Diagnostiqueurs en équipe propre</strong><small>Aucune sous-traitance — Service de proximité</small></div></div>
+  </div>
+  <div class="ch-r">
+    <div class="chpt"><div class="chpt-n">01</div><div><strong>Rapport immédiatement après intervention</strong><span>Vos documents vous sont remis sur place, sans attente. Disponibles aussi sur votre espace client.</span></div></div>
+    <div class="chpt"><div class="chpt-n">02</div><div><strong>Intervention sous 24 heures</strong><span>Nous nous adaptons à vos contraintes de calendrier, 6j/7 sur toute la région.</span></div></div>
+    <div class="chpt"><div class="chpt-n">03</div><div><strong>Clé en main, zéro friction</strong><span>De la commande à la remise du rapport, on gère tout. Vous n'avez rien à coordonner.</span></div></div>
+    <div class="chpt"><div class="chpt-n">04</div><div><strong>Plateforme pro avec accès sécurisé</strong><span>Syndics et admins de biens : commandez, suivez et téléchargez depuis votre espace dédié.</span></div></div>
+  </div>
+</section>
+
+<!-- Témoignages -->
+<section class="temoins">
+  <span class="tag tag-v">Ils nous font confiance</span>
+  <h2 class="h2" style="margin-bottom:10px;">Ce que disent nos clients</h2>
+  <p style="font-size:14px;color:var(--gray);margin-bottom:36px;">Vos avis seront bientôt affichés ici. <a onclick="showPage('devis')" style="color:var(--violet);cursor:pointer;font-weight:600;">Laissez-nous votre avis →</a></p>
+  <div class="tem-grid">
+    <div class="tem-card"><div class="tem-stars">★★★★★</div><p class="tem-txt">"Intervention rapide, diagnostiqueur professionnel et rapport reçu immédiatement. Je recommande vivement pour toute transaction immobilière."</p><div class="tem-auth"><div class="tem-av">SC</div><div><div class="tem-name">Sophie C.</div><div class="tem-role">Administratrice de biens — Lyon</div></div></div></div>
+    <div class="tem-card"><div class="tem-stars">★★★★★</div><p class="tem-txt">"Service clé en main parfait pour notre copropriété. Le plan pluriannuel de travaux a été réalisé avec sérieux et remis rapidement."</p><div class="tem-auth"><div class="tem-av">PM</div><div><div class="tem-name">Pierre M.</div><div class="tem-role">Syndic — Grenoble</div></div></div></div>
+    <div class="tem-card"><div class="tem-stars">★★★★★</div><p class="tem-txt">"Très satisfait de la réactivité. Prise de RDV simple, le diagnostiqueur était ponctuel et professionnel. Tout s'est passé sans accroc."</p><div class="tem-auth"><div class="tem-av">AL</div><div><div class="tem-name">Antoine L.</div><div class="tem-role">Particulier — Clermont-Ferrand</div></div></div></div>
+  </div>
+</section>
+
+<div class="sig">
+  <div class="sig-t"><h2>Et tout devient<br>plus simple !</h2><p>Devis gratuit en 2 minutes — réponse garantie sous 2h.<br>Rapport remis immédiatement après intervention.</p></div>
+  <div class="sig-a">
+    <button class="btn btn-blue" onclick="showPage('devis')">Devis gratuit</button>
+    <a href="tel:+33047873730" class="btn btn-outline-b" style="background:rgba(0,56,83,.12);">04 78 73 73 09</a>
+  </div>
+</div>
+
+<footer>
+  <div class="ft-inner">
+    <div class="ft-brand">
+      <div class="logo-wrap logo-dark">
+        <div class="logo-pill"><div class="logo-orb"></div><div class="logo-16am">16am</div></div>
+        <div class="logo-base">Diagnostics <div class="ldot"></div> État des lieux</div>
+      </div>
+      <p>SAS 16am by Acticontrole — 200 rue Léon Blum, 69100 Villeurbanne. Expert en diagnostics immobiliers et états des lieux en Rhône-Alpes Auvergne.</p>
+    </div>
+    <div class="ft-col"><h4>Services</h4><ul><li><a onclick="showPage('prestations')">DPE</a></li><li><a onclick="showPage('prestations')">Amiante</a></li><li><a onclick="showPage('prestations')">Plomb</a></li><li><a onclick="showPage('prestations')">Électricité & Gaz</a></li><li><a onclick="showPage('prestations')">État des lieux</a></li><li><a onclick="showPage('prestations')">Plan Pluriannuel</a></li></ul></div>
+    <div class="ft-col"><h4>Navigation</h4><ul><li><a onclick="showPage('particulier')">Espace Particulier</a></li><li><a onclick="showPage('professionnels')">Espace Professionnel</a></li><li><a onclick="showPage('espace-client')">Espace Client</a></li><li><a onclick="showPage('devis')">Devis gratuit</a></li><li><a onclick="showPage('blog')">Guides & Infos</a></li></ul></div>
+    <div class="ft-col"><h4>Contact</h4><ul><li><a href="tel:+33047873730">04 78 73 73 09</a></li><li><a href="mailto:contact@16am.immo">contact@16am.immo</a></li><li><span style="color:rgba(255,255,255,0.4);font-size:13px;">200 rue Léon Blum</span></li><li><span style="color:rgba(255,255,255,0.4);font-size:13px;">69100 Villeurbanne</span></li><li><span style="color:rgba(255,255,255,0.4);font-size:13px;">Lun–Sam · 8h–20h</span></li></ul></div>
+  </div>
+  <div class="ft-bottom"><span>© 2026 SAS 16am by Acticontrole — Siret 999 150 345 00018 RCS Lyon — <a href="https://16am.immo">www.16am.immo</a></span><div style="display:flex;gap:18px;flex-wrap:wrap;"><a href="#">Mentions légales</a><a href="#">CGV</a><a href="#">Confidentialité</a></div></div>
+</footer>
+</div>
+
+<!-- ═══════ PAGE PRESTATIONS ═══════ -->
+<div class="page" id="page-prestations">
+<div class="phero">
+  <div class="bc"><a onclick="showPage('accueil')">Accueil</a><span>›</span>Nos Prestations</div>
+  <h1>L'ensemble de nos <span class="grad-t">diagnostics</span> immobiliers</h1>
+  <p>Certifiés, disponibles sous 24h en Rhône-Alpes Auvergne — rapport remis immédiatement après intervention.</p>
+</div>
+<div class="fbar"><div class="ftabs"><button class="ftab active" data-filter="tous" onclick="fTab(this)">Tous</button><button class="ftab" data-filter="vente" onclick="fTab(this)">Vente</button><button class="ftab" data-filter="location" onclick="fTab(this)">Location</button><button class="ftab" data-filter="travaux" onclick="fTab(this)">Avant travaux</button><button class="ftab" data-filter="copropriete" onclick="fTab(this)">Copropriété</button><button class="ftab" data-filter="edl" onclick="fTab(this)">État des lieux</button></div></div>
+<section class="dsect">
+  <span class="tag tag-v">Nos diagnostics</span>
+  <h2 class="h2">Tous les diagnostics réglementaires</h2>
+  <div class="dg">
+    <div class="dc" data-cat="vente location">
+      <div class="dc-picto"><svg width="56" height="56" viewBox="0 0 56 56" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="svgp1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#34ff9a"/><stop offset="100%" stop-color="#7b4cfd"/></linearGradient></defs><circle cx="28" cy="28" r="27" fill="#0d2d40" stroke="url(#svgp1)" stroke-width="1.5"/><rect x="15" y="17" width="22" height="4" rx="2" fill="url(#svgp1)" opacity="0.9"/><rect x="15" y="24" width="17" height="4" rx="2" fill="url(#svgp1)" opacity="0.75"/><rect x="15" y="31" width="12" height="4" rx="2" fill="url(#svgp1)" opacity="0.6"/><rect x="15" y="38" width="7" height="4" rx="2" fill="url(#svgp1)" opacity="0.45"/></svg></div>
+      <div class="dc-badge">Vente & Location</div><div class="dc-nm">DPE</div><div class="dc-full">Diagnostic de Performance Énergétique</div><p class="dc-d">Obligatoire à chaque vente et location. Classement de A à G. Parties privatives et collectives d'immeubles.</p><div class="dc-meta"><span>⏱ Validité : 10 ans</span><span>📄 Rapport immédiat</span></div><a class="dc-link" onclick="showPage('devis')">Demander un devis →</a>
+    </div>
+    <div class="dc" data-cat="vente travaux">
+      <div class="dc-picto"><svg width="56" height="56" viewBox="0 0 56 56" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="svgp2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#34ff9a"/><stop offset="100%" stop-color="#7b4cfd"/></linearGradient></defs><circle cx="28" cy="28" r="27" fill="#0d2d40" stroke="url(#svgp2)" stroke-width="1.5"/><text x="28" y="37" text-anchor="middle" font-size="26" font-family="serif" font-weight="700" fill="url(#svgp2)">a</text></svg></div>
+      <div class="dc-badge">Avant 1997</div><div class="dc-nm">Amiante</div><div class="dc-full">Diagnostic Amiante</div><p class="dc-d">Repérage des matériaux amiantés (bâtiments avant 1997). Parties privatives, communes et bâtiments tertiaires.</p><div class="dc-meta"><span>⏱ Illimité si négatif</span><span>📄 Rapport immédiat</span></div><a class="dc-link" onclick="showPage('devis')">Demander un devis →</a>
+    </div>
+    <div class="dc" data-cat="vente location">
+      <div class="dc-picto"><svg width="56" height="56" viewBox="0 0 56 56" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="svgp3" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#34ff9a"/><stop offset="100%" stop-color="#7b4cfd"/></linearGradient></defs><circle cx="28" cy="28" r="27" fill="#0d2d40" stroke="url(#svgp3)" stroke-width="1.5"/><text x="28" y="36" text-anchor="middle" font-size="20" font-family="sans-serif" font-weight="800" fill="url(#svgp3)">Pb</text></svg></div>
+      <div class="dc-badge">Avant 1949</div><div class="dc-nm">Plomb (CREP)</div><div class="dc-full">Constat de Risque d'Exposition au Plomb</div><p class="dc-d">Biens construits avant 1949. Vente et location obligatoires.</p><div class="dc-meta"><span>⏱ 1 an location / illimité si négatif</span><span>📄 Rapport immédiat</span></div><a class="dc-link" onclick="showPage('devis')">Demander un devis →</a>
+    </div>
+    <div class="dc" data-cat="vente location">
+      <div class="dc-picto"><svg width="56" height="56" viewBox="0 0 56 56" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="svgp4" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#34ff9a"/><stop offset="100%" stop-color="#7b4cfd"/></linearGradient></defs><circle cx="28" cy="28" r="27" fill="#0d2d40" stroke="url(#svgp4)" stroke-width="1.5"/><polygon points="31,14 20,29 27,29 25,42 36,27 29,27" fill="url(#svgp4)"/></svg></div>
+      <div class="dc-badge">Sécurité</div><div class="dc-nm">Électricité</div><div class="dc-full">Diagnostic de l'installation électrique</div><p class="dc-d">Installations de plus de 15 ans. Maisons individuelles et appartements, parties privatives.</p><div class="dc-meta"><span>⏱ 3 ans vente / 6 ans location</span><span>📄 Rapport immédiat</span></div><a class="dc-link" onclick="showPage('devis')">Demander un devis →</a>
+    </div>
+    <div class="dc" data-cat="vente location">
+      <div class="dc-picto"><svg width="56" height="56" viewBox="0 0 56 56" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="svgp5" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#34ff9a"/><stop offset="100%" stop-color="#7b4cfd"/></linearGradient></defs><circle cx="28" cy="28" r="27" fill="#0d2d40" stroke="url(#svgp5)" stroke-width="1.5"/><path d="M28 38 C22 38 17 33 17 27 C17 21 22 16 28 16 C28 22 32 24 32 28 C32 33 30 38 28 38Z" fill="none" stroke="url(#svgp5)" stroke-width="2.2" stroke-linecap="round"/><circle cx="28" cy="34" r="3" fill="url(#svgp5)"/></svg></div>
+      <div class="dc-badge">Sécurité</div><div class="dc-nm">Gaz</div><div class="dc-full">Diagnostic de l'installation de gaz</div><p class="dc-d">Installations intérieures de gaz naturel de plus de 15 ans.</p><div class="dc-meta"><span>⏱ 3 ans vente / 6 ans location</span><span>📄 Rapport immédiat</span></div><a class="dc-link" onclick="showPage('devis')">Demander un devis →</a>
+    </div>
+    <div class="dc" data-cat="vente location">
+      <div class="dc-picto"><svg width="56" height="56" viewBox="0 0 56 56" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="svgp6" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#34ff9a"/><stop offset="100%" stop-color="#7b4cfd"/></linearGradient></defs><circle cx="28" cy="28" r="27" fill="#0d2d40" stroke="url(#svgp6)" stroke-width="1.5"/><path d="M16 40 L16 20 L36 20" fill="none" stroke="url(#svgp6)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M20 40 L40 40 L40 24" fill="none" stroke="url(#svgp6)" stroke-width="2" stroke-linecap="round" stroke-dasharray="3,2"/><line x1="33" y1="16" x2="40" y2="16" stroke="url(#svgp6)" stroke-width="2" stroke-linecap="round"/><line x1="40" y1="16" x2="40" y2="23" stroke="url(#svgp6)" stroke-width="2" stroke-linecap="round"/></svg></div>
+      <div class="dc-badge">Mesurages</div><div class="dc-nm">Loi Carrez & Boutin</div><div class="dc-full">Mesurage de surface privative</div><p class="dc-d">Carrez pour la vente en copropriété. Boutin pour la location.</p><div class="dc-meta"><span>⏱ Illimité si aucun travaux</span><span>📄 Rapport immédiat</span></div><a class="dc-link" onclick="showPage('devis')">Demander un devis →</a>
+    </div>
+    <div class="dc" data-cat="vente location">
+      <div class="dc-picto"><svg width="56" height="56" viewBox="0 0 56 56" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="svgp7" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#34ff9a"/><stop offset="100%" stop-color="#7b4cfd"/></linearGradient></defs><circle cx="28" cy="28" r="27" fill="#0d2d40" stroke="url(#svgp7)" stroke-width="1.5"/><polygon points="28,14 40,36 16,36" fill="none" stroke="url(#svgp7)" stroke-width="2.2" stroke-linejoin="round"/><circle cx="28" cy="32" r="1.8" fill="url(#svgp7)"/><line x1="28" y1="22" x2="28" y2="29" stroke="url(#svgp7)" stroke-width="2.2" stroke-linecap="round"/></svg></div>
+      <div class="dc-badge">Environnement</div><div class="dc-nm">Termites & ERP</div><div class="dc-full">Termites + État des Risques et Pollutions</div><p class="dc-d">Repérage xylophages et risques naturels, technologiques et pollutions.</p><div class="dc-meta"><span>⏱ 6 mois</span><span>📄 Rapport immédiat</span></div><a class="dc-link" onclick="showPage('devis')">Demander un devis →</a>
+    </div>
+    <div class="dc" data-cat="copropriete">
+      <div class="dc-picto"><svg width="56" height="56" viewBox="0 0 56 56" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="svgp8" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#34ff9a"/><stop offset="100%" stop-color="#7b4cfd"/></linearGradient></defs><circle cx="28" cy="28" r="27" fill="#0d2d40" stroke="url(#svgp8)" stroke-width="1.5"/><rect x="16" y="15" width="16" height="20" rx="2" fill="none" stroke="url(#svgp8)" stroke-width="2"/><rect x="20" y="12" width="8" height="5" rx="1.5" fill="url(#svgp8)" opacity="0.7"/><line x1="19" y1="22" x2="28" y2="22" stroke="url(#svgp8)" stroke-width="1.8" stroke-linecap="round"/><line x1="19" y1="26" x2="28" y2="26" stroke="url(#svgp8)" stroke-width="1.8" stroke-linecap="round"/><line x1="19" y1="30" x2="25" y2="30" stroke="url(#svgp8)" stroke-width="1.8" stroke-linecap="round"/><rect x="29" y="30" width="12" height="12" rx="2" fill="#0d2d40" stroke="url(#svgp8)" stroke-width="1.8"/><line x1="32" y1="36" x2="38" y2="36" stroke="url(#svgp8)" stroke-width="1.8" stroke-linecap="round"/><line x1="35" y1="33" x2="35" y2="39" stroke="url(#svgp8)" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+      <div class="dc-badge">Copropriété</div><div class="dc-nm">PPT</div><div class="dc-full">Plan Pluriannuel de Travaux</div><p class="dc-d">Obligatoire pour les copropriétés de plus de 15 ans. Diagnostic technique global et programmation des travaux.</p><div class="dc-meta"><span>⏱ Validité : 10 ans</span><span>📄 Rapport immédiat</span></div><a class="dc-link" onclick="showPage('devis')">Demander un devis →</a>
+    </div>
+    <div class="dc" data-cat="edl location">
+      <div class="dc-picto"><svg width="56" height="56" viewBox="0 0 56 56" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="svgp9" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#34ff9a"/><stop offset="100%" stop-color="#7b4cfd"/></linearGradient></defs><circle cx="28" cy="28" r="27" fill="#0d2d40" stroke="url(#svgp9)" stroke-width="1.5"/><rect x="17" y="14" width="18" height="24" rx="2.5" fill="none" stroke="url(#svgp9)" stroke-width="2"/><line x1="21" y1="21" x2="31" y2="21" stroke="url(#svgp9)" stroke-width="1.8" stroke-linecap="round"/><line x1="21" y1="25" x2="31" y2="25" stroke="url(#svgp9)" stroke-width="1.8" stroke-linecap="round"/><line x1="21" y1="29" x2="27" y2="29" stroke="url(#svgp9)" stroke-width="1.8" stroke-linecap="round"/><circle cx="34" cy="36" r="6" fill="#0d2d40" stroke="url(#svgp9)" stroke-width="1.8"/><path d="M31 36 L33 38 L37 34" stroke="url(#svgp9)" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="dc-badge">État des lieux</div><div class="dc-nm">État des lieux</div><div class="dc-full">Constat contradictoire d'état des lieux</div><p class="dc-d">Entrée et sortie pour logements et locaux professionnels. Bâtiments résidentiels et tertiaires.</p><div class="dc-meta"><span>⏱ Rapport immédiat</span><span>📄 Location résidentielle & tertiaire</span></div><a class="dc-link" onclick="showPage('devis')">Demander un devis →</a>
+    </div>
+  </div>
+</section>
+
+<section class="packs-sect">
+  <span class="tag tag-v">Nos formules</span>
+  <h2 class="h2">Des packs adaptés à votre projet</h2>
+  <p class="lead">Regroupez les diagnostics obligatoires selon votre situation — tous sur devis.</p>
+  <div class="pg">
+    <div class="pack"><h3>Pack Location</h3><div class="pack-sub">Mise en location d'un bien</div><ul class="pack-li"><li>DPE</li><li>Électricité</li><li>Gaz</li><li>Plomb (CREP)</li><li>Loi Boutin</li><li>ERP</li></ul><button class="pack-btn" onclick="showPage('devis')">Obtenir un devis</button></div>
+    <div class="pack feat"><div class="pack-badge">Le plus demandé</div><h3>Pack Vente</h3><div class="pack-sub">Mise en vente d'un bien</div><ul class="pack-li"><li>DPE</li><li>Amiante</li><li>Plomb (CREP)</li><li>Électricité & Gaz</li><li>Loi Carrez</li><li>Termites</li><li>ERP</li></ul><button class="pack-btn" onclick="showPage('devis')">Obtenir un devis</button></div>
+    <div class="pack"><h3>Pack Copropriété</h3><div class="pack-sub">Parties communes & PPT</div><ul class="pack-li"><li>DPE collectif</li><li>Amiante parties communes</li><li>Plan Pluriannuel (PPT)</li><li>ERP</li></ul><button class="pack-btn" onclick="showPage('devis')">Obtenir un devis</button></div>
+  </div>
+</section>
+
+<section class="process">
+  <span class="tag tag-g">Comment ça marche</span>
+  <h2 class="h2" style="margin-bottom:44px;">De la demande au rapport en 3 étapes</h2>
+  <div class="psteps">
+    <div class="pst"><div class="pst-n">01</div><h4>Demande de devis</h4><p>Formulaire en ligne ou appel. Réponse sous 2h, devis précis et sans engagement.</p></div>
+    <div class="pst"><div class="pst-n">02</div><h4>Prise de rendez-vous</h4><p>Intervention sous 24h, 6j/7. Nos diagnostiqueurs s'adaptent à vos disponibilités.</p></div>
+    <div class="pst"><div class="pst-n">03</div><h4>Rapport immédiat</h4><p>Le rapport vous est remis sur place, immédiatement après l'intervention. Zéro attente.</p></div>
+    <div class="pst"><div class="pst-n">+</div><h4>Espace client</h4><p>Vos rapports sont aussi disponibles en ligne dans votre espace client sécurisé à tout moment.</p></div>
+  </div>
+</section>
+
+<div class="cta-band"><h2>Prêt à démarrer ? Obtenez votre devis <span class="grad-t">gratuit</span> en 2 minutes.</h2><div class="cta-btns"><button class="btn btn-green" onclick="showPage('devis')">Demander un devis</button><a href="tel:+33047873730" class="btn btn-outline-w">04 78 73 73 09</a></div></div>
+<footer>
+  <div class="ft-inner">
+    <div class="ft-brand"><div class="logo-wrap logo-dark"><div class="logo-pill"><div class="logo-orb"></div><div class="logo-16am">16am</div></div><div class="logo-base">Diagnostics <div class="ldot"></div> État des lieux</div></div><p>SAS 16am by Acticontrole — Expert en diagnostics immobiliers en Rhône-Alpes Auvergne.</p></div>
+    <div class="ft-col"><h4>Services</h4><ul><li><a onclick="showPage('prestations')">DPE</a></li><li><a onclick="showPage('prestations')">Amiante</a></li><li><a onclick="showPage('prestations')">Plan Pluriannuel</a></li><li><a onclick="showPage('prestations')">État des lieux</a></li></ul></div>
+    <div class="ft-col"><h4>Espaces</h4><ul><li><a onclick="showPage('particulier')">Particuliers</a></li><li><a onclick="showPage('professionnels')">Professionnels</a></li><li><a onclick="showPage('espace-client')">Espace Client</a></li></ul></div>
+    <div class="ft-col"><h4>Contact</h4><ul><li><a href="tel:+33047873730">04 78 73 73 09</a></li><li><a href="mailto:contact@16am.immo">contact@16am.immo</a></li><li><span style="color:rgba(255,255,255,0.4);font-size:13px;">Lun–Sam · 8h–20h</span></li></ul></div>
+  </div>
+  <div class="ft-bottom"><span>© 2026 SAS 16am by Acticontrole — RCS Lyon</span><div style="display:flex;gap:16px;"><a href="#">Mentions légales</a><a href="#">Confidentialité</a></div></div>
+</footer>
+</div>
+
+<!-- ═══════ PAGE PARTICULIER ═══════ -->
+<div class="page" id="page-particulier">
+<div class="phero">
+  <div class="bc"><a onclick="showPage('accueil')">Accueil</a><span>›</span>Espace Particulier</div>
+  <h1>Vous vendez, louez ou rénovez ?<br><span class="grad-t">On s'occupe de tout.</span></h1>
+  <p>Vente, location, travaux — 16am vous accompagne avec réactivité et simplicité. Rapport remis immédiatement, zéro démarche à gérer.</p>
+</div>
+<section class="sit-sect">
+  <span class="tag tag-g">Votre situation</span>
+  <h2 class="h2">Quel est votre projet ?</h2>
+  <p class="lead">Sélectionnez votre cas pour découvrir les diagnostics obligatoires.</p>
+  <div class="sg">
+    <div class="sk"><div class="sk-hd"><span class="sk-ico">🔑</span><h3>Je vends mon bien</h3><p>Appartement, maison, local — tous types de biens</p></div><div class="sk-body"><ul class="sk-li"><li>DPE</li><li>Amiante (avant 1997)</li><li>Plomb / CREP (avant 1949)</li><li>Électricité & Gaz (+ 15 ans)</li><li>Loi Carrez (copropriété)</li><li>Termites (selon zone)</li><li>ERP</li></ul><button class="sk-btn" onclick="showPage('devis')">Obtenir un devis vente</button></div></div>
+    <div class="sk"><div class="sk-hd"><span class="sk-ico">🏡</span><h3>Je loue mon bien</h3><p>Location longue durée ou saisonnière</p></div><div class="sk-body"><ul class="sk-li"><li>DPE</li><li>Plomb / CREP (avant 1949)</li><li>Électricité (+ 15 ans)</li><li>Gaz (+ 15 ans)</li><li>Loi Boutin (mesurage)</li><li>ERP</li></ul><button class="sk-btn" onclick="showPage('devis')">Obtenir un devis location</button></div></div>
+    <div class="sk"><div class="sk-hd"><span class="sk-ico">🔨</span><h3>Je fais des travaux</h3><p>Rénovation, démolition partielle ou totale</p></div><div class="sk-body"><ul class="sk-li"><li>Amiante avant travaux</li><li>Plomb avant travaux</li><li>Termites</li><li>ERP</li></ul><button class="sk-btn" onclick="showPage('devis')">Obtenir un devis travaux</button></div></div>
+  </div>
+</section>
+<section class="faq-sect">
+  <span class="tag tag-v">Questions fréquentes</span>
+  <h2 class="h2">Vos questions, nos réponses</h2>
+  <div class="fg">
+    <div class="fi" onclick="tFaq(this)"><div class="fi-q"><strong>Quand reçois-je mon rapport ?</strong><span class="fi-ico">+</span></div><div class="fi-a">Immédiatement après l'intervention ! Notre diagnostiqueur vous remet le rapport sur place. Il est aussi disponible dans votre espace client en ligne.</div></div>
+    <div class="fi" onclick="tFaq(this)"><div class="fi-q"><strong>Quels diagnostics sont obligatoires pour vendre ?</strong><span class="fi-ico">+</span></div><div class="fi-a">DPE, amiante (avant 1997), plomb (avant 1949), électricité & gaz (+ 15 ans), loi Carrez (copropriété), termites (selon zone) et ERP. Nous vous conseillons gratuitement lors du devis.</div></div>
+    <div class="fi" onclick="tFaq(this)"><div class="fi-q"><strong>Sous quel délai intervenez-vous ?</strong><span class="fi-ico">+</span></div><div class="fi-a">Nous intervenons sous 24h maximum, 6 jours sur 7, sur toute la région Rhône-Alpes Auvergne. La prise de rendez-vous se fait en quelques minutes.</div></div>
+    <div class="fi" onclick="tFaq(this)"><div class="fi-q"><strong>Le devis est-il vraiment gratuit ?</strong><span class="fi-ico">+</span></div><div class="fi-a">Oui, 100% gratuit et sans engagement. Vous recevez un chiffrage précis sous 2h en jours ouvrés.</div></div>
+    <div class="fi" onclick="tFaq(this)"><div class="fi-q"><strong>Dois-je être présent lors de l'intervention ?</strong><span class="fi-ico">+</span></div><div class="fi-a">Votre présence est recommandée mais pas obligatoire. Vous pouvez déléguer l'accès à un tiers (agent, gardien, locataire...).</div></div>
+    <div class="fi" onclick="tFaq(this)"><div class="fi-q"><strong>Quelles zones couvrez-vous ?</strong><span class="fi-ico">+</span></div><div class="fi-a">Nous couvrons toute la région Rhône-Alpes Auvergne. Précisez l'adresse dans le formulaire de devis pour confirmer notre disponibilité dans votre secteur.</div></div>
+  </div>
+</section>
+<div class="cta-band"><h2>Devis <span class="grad-t">gratuit</span> — rapport immédiat après intervention.</h2><div class="cta-btns"><button class="btn btn-green" onclick="showPage('devis')">Demander un devis</button><a href="tel:+33047873730" class="btn btn-outline-w">04 78 73 73 09</a></div></div>
+<footer><div class="ft-inner"><div class="ft-brand"><div class="logo-wrap logo-dark"><div class="logo-pill"><div class="logo-orb"></div><div class="logo-16am">16am</div></div><div class="logo-base">Diagnostics <div class="ldot"></div> État des lieux</div></div><p>Expert en diagnostics immobiliers en Rhône-Alpes Auvergne.</p></div><div class="ft-col"><h4>Services</h4><ul><li><a onclick="showPage('prestations')">Tous les diagnostics</a></li><li><a onclick="showPage('prestations')">Nos packs</a></li></ul></div><div class="ft-col"><h4>Espaces</h4><ul><li><a onclick="showPage('particulier')">Particuliers</a></li><li><a onclick="showPage('professionnels')">Professionnels</a></li></ul></div><div class="ft-col"><h4>Contact</h4><ul><li><a href="tel:+33047873730">04 78 73 73 09</a></li><li><a href="mailto:contact@16am.immo">contact@16am.immo</a></li></ul></div></div><div class="ft-bottom"><span>© 2026 SAS 16am by Acticontrole</span><div style="display:flex;gap:16px;"><a href="#">Mentions légales</a><a href="#">Confidentialité</a></div></div></footer>
+</div>
+
+<!-- ═══════ PAGE PROFESSIONNELS ═══════ -->
+<div class="page" id="page-professionnels">
+<div class="phero two">
+  <div class="pht">
+    <div class="bc"><a onclick="showPage('accueil')">Accueil</a><span>›</span>Espace Professionnel</div>
+    <h1>Un partenaire <span class="grad-t">dédié</span><br>aux professionnels</h1>
+    <p>Syndics, administrateurs de biens, agences — plateforme de commande sécurisée, tarifs volume, équipe de 16 diagnostiqueurs dédiés.</p>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px;background:rgba(255,255,255,.06);border-radius:12px;overflow:hidden;">
+    <div style="padding:22px;text-align:center;background:rgba(255,255,255,.04);"><span style="font-size:30px;font-weight:800;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:block;margin-bottom:5px;">24h</span><span style="font-size:12px;color:rgba(255,255,255,.45);">Intervention max</span></div>
+    <div style="padding:22px;text-align:center;background:rgba(255,255,255,.04);"><span style="font-size:30px;font-weight:800;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:block;margin-bottom:5px;">Immédiat</span><span style="font-size:12px;color:rgba(255,255,255,.45);">Rapport remis</span></div>
+    <div style="padding:22px;text-align:center;background:rgba(255,255,255,.04);"><span style="font-size:30px;font-weight:800;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:block;margin-bottom:5px;">16</span><span style="font-size:12px;color:rgba(255,255,255,.45);">Diagnostiqueurs</span></div>
+    <div style="padding:22px;text-align:center;background:rgba(255,255,255,.04);"><span style="font-size:30px;font-weight:800;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:block;margin-bottom:5px;">RA</span><span style="font-size:12px;color:rgba(255,255,255,.45);">Rhône-Alpes Auv.</span></div>
+  </div>
+</div>
+
+<section style="padding:76px 60px;">
+  <span class="tag tag-v">Avantages pro</span>
+  <h2 class="h2">Ce que nous apportons aux professionnels</h2>
+  <p class="lead">Un service structuré, une plateforme dédiée et une équipe propre sans sous-traitance.</p>
+  <div class="adv-g">
+    <div class="av"><span class="av-ico">🔐</span><h3>Plateforme de commande sécurisée</h3><p>Vos clients accèdent à la plateforme de commande via leurs codes personnels. Commandes, suivi, téléchargement des rapports — tout centralisé.</p></div>
+    <div class="av"><span class="av-ico">💰</span><h3>Tarifs volume adaptés</h3><p>Des grilles tarifaires négociées selon votre volume d'activité. Plus vous commandez, plus les conditions sont avantageuses.</p></div>
+    <div class="av"><span class="av-ico">📅</span><h3>Prise de RDV simplifiée</h3><p>Créneaux disponibles 6j/7 jusqu'à 20h. Intervention sous 24h garantie sur toute la région Rhône-Alpes Auvergne.</p></div>
+    <div class="av"><span class="av-ico">📄</span><h3>Rapport immédiat</h3><p>Le rapport est remis immédiatement après l'intervention, sur place. Disponible aussi en téléchargement depuis la plateforme.</p></div>
+    <div class="av"><span class="av-ico">👥</span><h3>Équipe propre de 16 personnes</h3><p>Aucune sous-traitance. Nos 16 diagnostiqueurs sont tous salariés, formés et supervisés en interne. Qualité constante et maîtrisée.</p></div>
+    <div class="av"><span class="av-ico">🎯</span><h3>Service clé en main</h3><p>Un interlocuteur dédié pour votre compte. De la commande au rapport, tout est pris en charge sans que vous ayez à coordonner quoi que ce soit.</p></div>
+  </div>
+</section>
+
+<section style="background:var(--off);padding:76px 60px;">
+  <span class="tag tag-g">Nos clients professionnels</span>
+  <h2 class="h2">Principalement des professionnels de la gestion immobilière</h2>
+  <p class="lead">Notre expertise est particulièrement adaptée aux besoins des syndics et administrateurs de biens.</p>
+  <div class="pro-grid">
+    <div class="prcard"><span class="prcard-ico">🏗️</span><div class="prcard-n">Syndics de copropriété</div><p>PPT, parties communes, DPE collectif — gestion de parc complète.</p></div>
+    <div class="prcard"><span class="prcard-ico">🏬</span><div class="prcard-n">Administrateurs de biens</div><p>Diagnostics récurrents, états des lieux, suivi centralisé.</p></div>
+    <div class="prcard"><span class="prcard-ico">🏢</span><div class="prcard-n">Agences immobilières</div><p>Packs vente et location, réactivité maximale pour vos transactions.</p></div>
+    <div class="prcard"><span class="prcard-ico">⚖️</span><div class="prcard-n">Notaires</div><p>Rapports conformes remis immédiatement pour vos actes de vente.</p></div>
+  </div>
+</section>
+
+<section style="padding:76px 60px;display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center;">
+  <div>
+    <span class="tag tag-v">Plateforme de commande</span>
+    <h2 class="h2">Accès sécurisé pour vos clients</h2>
+    <p style="font-size:15px;color:var(--gray);line-height:1.8;margin-bottom:26px;">Chaque client professionnel dispose de ses propres codes d'accès. Depuis la plateforme, il commande, suit ses dossiers en temps réel et télécharge ses rapports.</p>
+    <div class="ec-feat">
+      <div class="ecf"><div class="ecf-ic">🔐</div><div><strong>Accès par codes personnels</strong><span>Chaque client a ses identifiants sécurisés.</span></div></div>
+      <div class="ecf"><div class="ecf-ic">📋</div><div><strong>Commande en ligne directe</strong><span>Passez vos ordres de mission sans appel téléphonique.</span></div></div>
+      <div class="ecf"><div class="ecf-ic">🔔</div><div><strong>Suivi temps réel</strong><span>Statut de chaque intervention mis à jour automatiquement.</span></div></div>
+      <div class="ecf"><div class="ecf-ic">📁</div><div><strong>Téléchargement des rapports</strong><span>Tous vos rapports archivés et accessibles à tout moment.</span></div></div>
+    </div>
+    <button class="btn btn-blue" style="margin-top:28px;" onclick="showPage('devis')">Ouvrir un compte pro</button>
+  </div>
+  <div class="ext-mock">
+    <div class="ext-bar"><div class="edot" style="background:#ff5f57;"></div><div class="edot" style="background:#febc2e;"></div><div class="edot" style="background:#28c840;"></div><span style="font-size:11.5px;color:rgba(255,255,255,.3);margin-left:8px;">Plateforme 16am — Espace Pro</span></div>
+    <div class="ext-inner">
+      <div class="ext-h">Mes dossiers récents</div>
+      <div class="ext-row"><div class="ext-s ok">Terminé</div><div class="ext-t">12 rue des Acacias, Lyon 3 — DPE + Élec</div><div class="ext-d">Aujourd'hui</div></div>
+      <div class="ext-row"><div class="ext-s go">En cours</div><div class="ext-t">45 bd Gambetta, Villeurbanne — Pack Vente</div><div class="ext-d">Demain 10h</div></div>
+      <div class="ext-row"><div class="ext-s ok">Terminé</div><div class="ext-t">8 allée des Roses, Caluire — PPT + Amiante</div><div class="ext-d">Hier</div></div>
+      <div class="ext-row"><div class="ext-s go">Planifié</div><div class="ext-t">Résid. Les Tilleuls — DPE collectif</div><div class="ext-d">24 mars</div></div>
+      <div style="text-align:center;margin-top:13px;"><span style="font-size:11.5px;color:var(--green);font-weight:600;cursor:pointer;">Voir tous les dossiers →</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="cta-band"><h2>Ouvrez votre compte pro <span class="grad-t">gratuitement</span> dès aujourd'hui.</h2><div class="cta-btns"><button class="btn btn-green" onclick="showPage('devis')">Créer un compte pro</button><a href="tel:+33047873730" class="btn btn-outline-w">04 78 73 73 09</a></div></div>
+<footer><div class="ft-inner"><div class="ft-brand"><div class="logo-wrap logo-dark"><div class="logo-pill"><div class="logo-orb"></div><div class="logo-16am">16am</div></div><div class="logo-base">Diagnostics <div class="ldot"></div> État des lieux</div></div><p>Expert en diagnostics en Rhône-Alpes Auvergne.</p></div><div class="ft-col"><h4>Services</h4><ul><li><a onclick="showPage('prestations')">Tous les diagnostics</a></li></ul></div><div class="ft-col"><h4>Espaces</h4><ul><li><a onclick="showPage('particulier')">Particuliers</a></li><li><a onclick="showPage('professionnels')">Professionnels</a></li></ul></div><div class="ft-col"><h4>Contact</h4><ul><li><a href="tel:+33047873730">04 78 73 73 09</a></li><li><a href="mailto:contact@16am.immo">contact@16am.immo</a></li></ul></div></div><div class="ft-bottom"><span>© 2026 SAS 16am by Acticontrole</span><div style="display:flex;gap:16px;"><a href="#">Mentions légales</a><a href="#">Confidentialité</a></div></div></footer>
+</div>
+
+<!-- ═══════ PAGE DEVIS ═══════ -->
+<div class="page" id="page-devis">
+<div class="phero">
+  <div class="bc"><a onclick="showPage('accueil')">Accueil</a><span>›</span>Devis gratuit</div>
+  <h1>Votre devis <span class="grad-t">gratuit</span><br>en quelques clics</h1>
+  <p>Réponse sous 2h en jours ouvrés. Devis précis, sans engagement. Intervention sous 24h, rapport immédiat.</p>
+</div>
+<div class="dv-layout">
+  <div class="dv-form">
+    <h2>Formulaire de demande de devis</h2>
+    <p>Champs marqués <span style="color:var(--violet)">*</span> obligatoires.</p>
+    <div class="ssteps"><div class="sstep done">✓ Bien</div><div class="sstep active">Diagnostics</div><div class="sstep">Contact</div><div class="sstep">Confirmation</div></div>
+    <form onsubmit="sendDevis(event)">
+      <div class="fsect">
+        <h3>1. Type de bien</h3>
+        <div class="tg">
+          <label class="tc sel" onclick="selT(this)"><input type="radio" name="bien" value="appartement" checked><span class="ti">🏢</span><span class="tl">Appartement</span></label>
+          <label class="tc" onclick="selT(this)"><input type="radio" name="bien" value="maison"><span class="ti">🏠</span><span class="tl">Maison</span></label>
+          <label class="tc" onclick="selT(this)"><input type="radio" name="bien" value="local"><span class="ti">🏭</span><span class="tl">Local</span></label>
+        </div>
+        <div class="frow"><div class="ff"><label>Surface <span class="req">*</span></label><select required><option value="">Choisir...</option><option>Moins de 30 m²</option><option>30–50 m²</option><option>50–80 m²</option><option>80–120 m²</option><option>120–200 m²</option><option>Plus de 200 m²</option></select></div><div class="ff"><label>Année construction <span class="req">*</span></label><select required><option value="">Choisir...</option><option>Avant 1949</option><option>1949–1974</option><option>1974–1997</option><option>Après 1997</option><option>Inconnue</option></select></div></div>
+        <div class="frow full"><div class="ff"><label>Adresse du bien <span class="req">*</span></label><input type="text" placeholder="Ex : 12 rue de la République, 69001 Lyon" required></div></div>
+        <div class="frow"><div class="ff"><label>Motif <span class="req">*</span></label><select required><option value="">Choisir...</option><option>Vente</option><option>Location</option><option>Avant travaux</option><option>Copropriété / PPT</option><option>État des lieux</option><option>Autre</option></select></div><div class="ff"><label>Date souhaitée</label><input type="date"></div></div>
+      </div>
+      <div class="fsect">
+        <h3>2. Diagnostics souhaités</h3>
+        <div class="dckg">
+          <label class="dck"><input type="checkbox" checked><div><strong>DPE</strong><span>Performance énergétique</span></div></label>
+          <label class="dck"><input type="checkbox"><div><strong>Amiante</strong><span>Avant 1997</span></div></label>
+          <label class="dck"><input type="checkbox"><div><strong>Plomb (CREP)</strong><span>Avant 1949</span></div></label>
+          <label class="dck"><input type="checkbox"><div><strong>Électricité</strong><span>+15 ans</span></div></label>
+          <label class="dck"><input type="checkbox"><div><strong>Gaz</strong><span>+15 ans</span></div></label>
+          <label class="dck"><input type="checkbox"><div><strong>Loi Carrez / Boutin</strong><span>Mesurage</span></div></label>
+          <label class="dck"><input type="checkbox"><div><strong>Termites & ERP</strong><span>Risques</span></div></label>
+          <label class="dck"><input type="checkbox"><div><strong>PPT</strong><span>Plan pluriannuel</span></div></label>
+          <label class="dck"><input type="checkbox"><div><strong>État des lieux</strong><span>Entrée / sortie</span></div></label>
+          <label class="dck"><input type="checkbox"><div><strong>Je ne sais pas</strong><span>Conseiller moi</span></div></label>
+        </div>
+      </div>
+      <div class="fsect">
+        <h3>3. Vos coordonnées</h3>
+        <div class="frow"><div class="ff"><label>Prénom <span class="req">*</span></label><input type="text" placeholder="Jean" required></div><div class="ff"><label>Nom <span class="req">*</span></label><input type="text" placeholder="Dupont" required></div></div>
+        <div class="frow"><div class="ff"><label>Email <span class="req">*</span></label><input type="email" placeholder="jean@email.com" required></div><div class="ff"><label>Téléphone <span class="req">*</span></label><input type="tel" placeholder="06 XX XX XX XX" required></div></div>
+        <div class="frow full"><div class="ff"><label>Vous êtes</label><select><option>Un particulier</option><option>Un administrateur de biens</option><option>Un syndic de copropriété</option><option>Une agence immobilière</option><option>Un notaire</option><option>Autre professionnel</option></select></div></div>
+        <div class="frow full"><div class="ff"><label>Message complémentaire</label><textarea placeholder="Accès au bien, contraintes horaires, nombre de lots, etc."></textarea></div></div>
+      </div>
+      <div class="ff-foot"><button type="submit" class="btn-send">Envoyer ma demande →</button><p class="fn">Réponse sous 2h · Devis gratuit<br>Rapport remis immédiatement après intervention</p></div>
+      <div class="sbox" id="sbox">
+        <div class="sbox-check">✓</div>
+        <h3>Demande envoyée avec succès !</h3>
+        <p>Votre référence dossier : <strong id="sbox-ref" style="color:var(--violet);"></strong></p>
+        <div class="sbox-steps">
+          <div class="sbox-step"><div class="sbox-step-num done">✓</div><div class="sbox-step-body"><strong>Demande reçue</strong><span>À l'instant</span></div></div>
+          <div class="sbox-step"><div class="sbox-step-num active">2</div><div class="sbox-step-body"><strong>Devis personnalisé</strong><span>Dans les 2h en jours ouvrés</span></div></div>
+          <div class="sbox-step"><div class="sbox-step-num">3</div><div class="sbox-step-body"><strong>Prise de rendez-vous</strong><span>À votre convenance, sous 24h</span></div></div>
+          <div class="sbox-step"><div class="sbox-step-num">4</div><div class="sbox-step-body"><strong>Rapport remis</strong><span>Immédiatement après intervention</span></div></div>
+        </div>
+        <div class="sbox-actions">
+          <button class="btn btn-blue" onclick="showPage('rdv')">Prendre RDV directement →</button>
+          <a href="tel:+33047873730" class="sbox-tel">Ou appelez-nous : <strong>04 78 73 73 09</strong></a>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="dv-sb">
+    <div class="sb-b"><h4>Nos engagements</h4>
+      <div class="sb-pt"><div class="sb-ic">⚡</div><div><strong>Réponse sous 2h</strong><span>En jours ouvrés</span></div></div>
+      <div class="sb-pt"><div class="sb-ic">📅</div><div><strong>Intervention sous 24h</strong><span>6j/7 en Rhône-Alpes Auvergne</span></div></div>
+      <div class="sb-pt"><div class="sb-ic">📄</div><div><strong>Rapport immédiat</strong><span>Remis sur place après intervention</span></div></div>
+      <div class="sb-pt"><div class="sb-ic">👥</div><div><strong>Équipe de 16 experts</strong><span>Sans sous-traitance</span></div></div>
+    </div>
+    <div class="sb-b"><h4>Packs recommandés</h4>
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:9px;padding:13px;margin-bottom:9px;"><strong style="font-size:13.5px;color:var(--blue);display:block;margin-bottom:3px;">Pack Vente</strong><span style="font-size:11.5px;color:var(--gray);">DPE + Amiante + Plomb + Élec + Gaz + Carrez + ERP</span></div>
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:9px;padding:13px;margin-bottom:9px;"><strong style="font-size:13.5px;color:var(--blue);display:block;margin-bottom:3px;">Pack Location</strong><span style="font-size:11.5px;color:var(--gray);">DPE + Élec + Gaz + Plomb + Boutin</span></div>
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:9px;padding:13px;"><strong style="font-size:13.5px;color:var(--blue);display:block;margin-bottom:3px;">Pack Copropriété</strong><span style="font-size:11.5px;color:var(--gray);">DPE collectif + Amiante + PPT</span></div>
+    </div>
+    <div class="sb-tel"><p>Vous préférez nous appeler ?</p><a href="tel:+33047873730">04 78 73 73 09</a><small>Lun – Sam · 8h à 20h</small></div>
+  </div>
+</div>
+<footer><div class="ft-inner"><div class="ft-brand"><div class="logo-wrap logo-dark"><div class="logo-pill"><div class="logo-orb"></div><div class="logo-16am">16am</div></div><div class="logo-base">Diagnostics <div class="ldot"></div> État des lieux</div></div><p>Expert en diagnostics en Rhône-Alpes Auvergne.</p></div><div class="ft-col"><h4>Services</h4><ul><li><a onclick="showPage('prestations')">Tous les diagnostics</a></li></ul></div><div class="ft-col"><h4>Espaces</h4><ul><li><a onclick="showPage('particulier')">Particuliers</a></li><li><a onclick="showPage('professionnels')">Professionnels</a></li></ul></div><div class="ft-col"><h4>Contact</h4><ul><li><a href="tel:+33047873730">04 78 73 73 09</a></li><li><a href="mailto:contact@16am.immo">contact@16am.immo</a></li></ul></div></div><div class="ft-bottom"><span>© 2026 SAS 16am by Acticontrole</span><div style="display:flex;gap:16px;"><a href="#">Mentions légales</a><a href="#">Confidentialité</a></div></div></footer>
+</div>
+
+<!-- ═══════ PAGE BLOG ═══════ -->
+<div class="page" id="page-blog">
+<div class="phero">
+  <div class="bc"><a onclick="showPage('accueil')">Accueil</a><span>›</span>Guides & Infos</div>
+  <h1>Guides, obligations et <span class="grad-t">conseils pratiques</span></h1>
+  <p>Tout ce que vous devez savoir sur les diagnostics immobiliers en Rhône-Alpes Auvergne.</p>
+</div>
+<div class="blog-grid">
+  <div class="ba"><div class="ba-img">⚡<span class="ba-cat">DPE</span></div><div class="ba-body"><div class="ba-date">Mars 2026</div><h3>DPE 2025 : ce qui a changé et ce que ça implique pour votre vente</h3><p>Le DPE est devenu opposable et son mode de calcul a évolué. Voici ce que ça change concrètement pour les propriétaires qui vendent ou louent.</p><div class="ba-more">Lire l'article →</div></div></div>
+  <div class="ba"><div class="ba-img">🏗️<span class="ba-cat">Copropriété</span></div><div class="ba-body"><div class="ba-date">Février 2026</div><h3>Plan Pluriannuel de Travaux : qui est concerné et comment ça se passe ?</h3><p>Le PPT est obligatoire pour les copropriétés de plus de 15 ans. Comprendre les étapes, les délais et les implications pour les syndics.</p><div class="ba-more">Lire l'article →</div></div></div>
+  <div class="ba"><div class="ba-img">🔑<span class="ba-cat">Vente</span></div><div class="ba-body"><div class="ba-date">Janvier 2026</div><h3>Dossier de diagnostic technique : quels documents sont obligatoires à la vente ?</h3><p>La liste complète des diagnostics à fournir selon le type de bien, son ancienneté et sa localisation en Rhône-Alpes Auvergne.</p><div class="ba-more">Lire l'article →</div></div></div>
+  <div class="ba"><div class="ba-img">📋<span class="ba-cat">État des lieux</span></div><div class="ba-body"><div class="ba-date">Décembre 2025</div><h3>État des lieux : pourquoi faire appel à un professionnel tiers ?</h3><p>Un état des lieux réalisé par un expert neutre protège à la fois le bailleur et le locataire. On vous explique pourquoi et comment.</p><div class="ba-more">Lire l'article →</div></div></div>
+  <div class="ba"><div class="ba-img">🔨<span class="ba-cat">Travaux</span></div><div class="ba-body"><div class="ba-date">Novembre 2025</div><h3>Diagnostics avant travaux : ce que la loi impose et pourquoi c'est indispensable</h3><p>Amiante, plomb, termites — avant de rénover, la réglementation impose des diagnostics spécifiques. Le guide complet.</p><div class="ba-more">Lire l'article →</div></div></div>
+  <div class="ba"><div class="ba-img">🏠<span class="ba-cat">Location</span></div><div class="ba-body"><div class="ba-date">Octobre 2025</div><h3>Mettre en location en 2025 : la checklist des diagnostics obligatoires</h3><p>DPE, plomb, électricité, gaz, ERP — tout ce qu'il faut rassembler avant de signer un bail de location en Rhône-Alpes.</p><div class="ba-more">Lire l'article →</div></div></div>
+</div>
+<footer><div class="ft-inner"><div class="ft-brand"><div class="logo-wrap logo-dark"><div class="logo-pill"><div class="logo-orb"></div><div class="logo-16am">16am</div></div><div class="logo-base">Diagnostics <div class="ldot"></div> État des lieux</div></div><p>Expert en diagnostics en Rhône-Alpes Auvergne.</p></div><div class="ft-col"><h4>Services</h4><ul><li><a onclick="showPage('prestations')">Tous les diagnostics</a></li></ul></div><div class="ft-col"><h4>Espaces</h4><ul><li><a onclick="showPage('particulier')">Particuliers</a></li><li><a onclick="showPage('professionnels')">Professionnels</a></li></ul></div><div class="ft-col"><h4>Contact</h4><ul><li><a href="tel:+33047873730">04 78 73 73 09</a></li><li><a href="mailto:contact@16am.immo">contact@16am.immo</a></li></ul></div></div><div class="ft-bottom"><span>© 2026 SAS 16am by Acticontrole</span><div style="display:flex;gap:16px;"><a href="#">Mentions légales</a><a href="#">Confidentialité</a></div></div></footer>
+</div>
+
+<!-- ═══════ PAGE ESPACE CLIENT ═══════ -->
+<div class="page" id="page-espace-client">
+<div class="phero">
+  <div class="bc"><a onclick="showPage('accueil')">Accueil</a><span>›</span>Espace Client</div>
+  <h1>Votre espace client <span class="grad-t">sécurisé</span></h1>
+  <p>Téléchargez vos rapports, suivez vos interventions et gérez vos commandes depuis votre espace personnel.</p>
+</div>
+<section class="espace-client">
+  <div class="ec-l">
+    <span class="tag tag-g">Ce que vous trouvez ici</span>
+    <h2>Tout vos diagnostics,<br>accessibles à tout moment</h2>
+    <p>Vos rapports sont remis immédiatement après l'intervention, et disponibles en ligne dans votre espace client pour être consultés, téléchargés ou partagés à tout moment.</p>
+    <div class="ec-feat">
+      <div class="ecf"><div class="ecf-ic">📁</div><div><strong>Téléchargement de vos rapports</strong><span>Tous vos diagnostics archivés et accessibles.</span></div></div>
+      <div class="ecf"><div class="ecf-ic">🔔</div><div><strong>Suivi de vos interventions</strong><span>Statut en temps réel de chaque dossier.</span></div></div>
+      <div class="ecf"><div class="ecf-ic">📅</div><div><strong>Historique complet</strong><span>Retrouvez l'ensemble de vos diagnostics passés.</span></div></div>
+      <div class="ecf"><div class="ecf-ic">🔐</div><div><strong>Accès sécurisé</strong><span>Connexion protégée par identifiant et mot de passe.</span></div></div>
+    </div>
+  </div>
+  <div class="conn-box">
+    <h3>Connexion à votre espace</h3>
+    <p>Entrez vos identifiants pour accéder à votre espace client. Vous n'avez pas encore de compte ? Contactez-nous.</p>
+    <div class="conn-tabs">
+      <button class="ctab active" onclick="connTab(this)">Particulier</button>
+      <button class="ctab" onclick="connTab(this)">Professionnel</button>
+    </div>
+    <div class="frow full" style="margin-bottom:13px;"><div class="ff"><label>Email</label><input type="email" placeholder="votre@email.com"></div></div>
+    <div class="frow full" style="margin-bottom:13px;"><div class="ff"><label>Mot de passe</label><input type="password" placeholder="••••••••"></div></div>
+    <button class="btn btn-blue" style="width:100%;justify-content:center;padding:13px;" onclick="alert('Redirection vers la plateforme sécurisée...')">Se connecter →</button>
+    <div class="conn-note">Mot de passe oublié ? <a href="#" style="color:var(--violet);font-weight:600;cursor:pointer;">Réinitialisez-le ici</a><br>Pas encore de compte ? <a onclick="showPage('devis')">Contactez-nous</a></div>
+  </div>
+</section>
+<footer><div class="ft-inner"><div class="ft-brand"><div class="logo-wrap logo-dark"><div class="logo-pill"><div class="logo-orb"></div><div class="logo-16am">16am</div></div><div class="logo-base">Diagnostics <div class="ldot"></div> État des lieux</div></div><p>Expert en diagnostics en Rhône-Alpes Auvergne.</p></div><div class="ft-col"><h4>Services</h4><ul><li><a onclick="showPage('prestations')">Tous les diagnostics</a></li></ul></div><div class="ft-col"><h4>Espaces</h4><ul><li><a onclick="showPage('particulier')">Particuliers</a></li><li><a onclick="showPage('professionnels')">Professionnels</a></li></ul></div><div class="ft-col"><h4>Contact</h4><ul><li><a href="tel:+33047873730">04 78 73 73 09</a></li><li><a href="mailto:contact@16am.immo">contact@16am.immo</a></li></ul></div></div><div class="ft-bottom"><span>© 2026 SAS 16am by Acticontrole</span><div style="display:flex;gap:16px;"><a href="#">Mentions légales</a><a href="#">Confidentialité</a></div></div></footer>
+</div>
+
+<!-- ═══════ PAGE RDV ═══════ -->
+<div class="page" id="page-rdv">
+<div class="phero">
+  <div class="bc"><a onclick="showPage('accueil')">Accueil</a><span>›</span>Prendre rendez-vous</div>
+  <h1>Choisissez votre <span class="grad-t">créneau</span></h1>
+  <p>Sélectionnez une date et un horaire. Nos diagnostiqueurs interviennent sous 24h, 6j/7 en Rhône-Alpes Auvergne.</p>
+</div>
+<div class="rdv-layout">
+  <div class="rdv-main">
+    <h2>Sélectionnez une date</h2>
+    <p>Les créneaux disponibles sont indiqués par un <span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#34ff9a;vertical-align:middle;"></span> point vert.</p>
+
+    <div class="cal-header">
+      <h3 id="cal-month-label">Mars 2026</h3>
+      <div class="cal-nav">
+        <button onclick="changeMonth(-1)">‹</button>
+        <button onclick="changeMonth(1)">›</button>
+      </div>
+    </div>
+    <div class="cal-grid-head">
+      <div class="cal-day-name">LUN</div><div class="cal-day-name">MAR</div>
+      <div class="cal-day-name">MER</div><div class="cal-day-name">JEU</div>
+      <div class="cal-day-name">VEN</div><div class="cal-day-name">SAM</div>
+      <div class="cal-day-name">DIM</div>
+    </div>
+    <div class="cal-grid" id="cal-grid"></div>
+
+    <div class="slots-section" id="slots-section" style="display:none;">
+      <h4 id="slots-title">Créneaux disponibles</h4>
+      <div class="slots-grid" id="slots-grid"></div>
+    </div>
+
+    <div id="rdv-form-section" style="display:none;">
+      <div style="background:var(--off);border:1px solid var(--border);border-radius:12px;padding:22px;margin-bottom:20px;">
+        <h4 style="font-size:15px;font-weight:700;color:var(--blue);margin-bottom:16px;">Vos coordonnées</h4>
+        <div class="frow"><div class="ff"><label>Prénom <span class="req">*</span></label><input id="rdv-prenom" type="text" placeholder="Jean" required></div><div class="ff"><label>Nom <span class="req">*</span></label><input id="rdv-nom" type="text" placeholder="Dupont" required></div></div>
+        <div class="frow"><div class="ff"><label>Téléphone <span class="req">*</span></label><input id="rdv-tel" type="tel" placeholder="06 XX XX XX XX" required></div><div class="ff"><label>Email <span class="req">*</span></label><input id="rdv-email" type="email" placeholder="jean@email.com" required></div></div>
+        <div class="frow full"><div class="ff"><label>Adresse du bien</label><input id="rdv-adresse" type="text" placeholder="12 rue de la République, 69001 Lyon"></div></div>
+        <div class="frow full" style="margin-bottom:0;"><div class="ff"><label>Commentaire</label><textarea id="rdv-note" placeholder="Accès, digicode, précisions..." style="min-height:70px;"></textarea></div></div>
+      </div>
+      <button class="rdv-confirm-btn" id="rdv-confirm-btn" onclick="confirmRdv()">Confirmer le rendez-vous →</button>
+    </div>
+
+    <div class="rdv-success" id="rdv-success">
+      <div class="rdv-success-ico">📅</div>
+      <h3>Rendez-vous confirmé !</h3>
+      <p>Votre rendez-vous a bien été enregistré. Vous recevrez une confirmation par email et SMS.</p>
+      <div class="rdv-success-card">
+        <div class="rs-row"><span class="rs-ico">📆</span><span class="rs-text" id="rs-date"></span></div>
+        <div class="rs-row"><span class="rs-ico">🕐</span><span class="rs-text" id="rs-time"></span></div>
+        <div class="rs-row"><span class="rs-ico">👤</span><span class="rs-text" id="rs-name"></span></div>
+        <div class="rs-row"><span class="rs-ico">📍</span><span class="rs-text" id="rs-addr"></span></div>
+      </div>
+      <button class="btn btn-blue" onclick="showPage('accueil')" style="margin:0 auto;display:flex;">Retour à l'accueil</button>
+    </div>
+  </div>
+
+  <div class="rdv-sidebar">
+    <div class="rdv-recap">
+      <h4>Nos engagements</h4>
+      <div class="rdv-recap-item"><div class="rdv-recap-ic">📅</div><div><strong>Intervention sous 24h</strong><span>6j/7, matin et après-midi</span></div></div>
+      <div class="rdv-recap-item"><div class="rdv-recap-ic">📄</div><div><strong>Rapport immédiat</strong><span>Remis sur place après intervention</span></div></div>
+      <div class="rdv-recap-item"><div class="rdv-recap-ic">✓</div><div><strong>Confirmation par SMS</strong><span>Et rappel la veille du RDV</span></div></div>
+      <div class="rdv-recap-item"><div class="rdv-recap-ic">🔐</div><div><strong>Sans engagement</strong><span>Annulation gratuite jusqu'à 24h avant</span></div></div>
+    </div>
+    <div class="rdv-selected-info" id="rdv-selected-info">
+      <p>Votre sélection</p>
+      <div class="rdv-selected-date" id="rdv-sel-date">—</div>
+      <div class="rdv-selected-time" id="rdv-sel-time">Aucun créneau choisi</div>
+    </div>
+    <div style="background:var(--off);border:1px solid var(--border);border-radius:13px;padding:18px;margin-top:16px;text-align:center;">
+      <p style="font-size:13px;color:var(--gray);margin-bottom:10px;">Préférez-vous nous appeler ?</p>
+      <a href="tel:+33047873730" style="font-size:18px;font-weight:800;color:var(--blue);text-decoration:none;display:block;">04 78 73 73 09</a>
+      <span style="font-size:11.5px;color:var(--gray);">Lun–Sam · 8h–20h</span>
+    </div>
+  </div>
+</div>
+<footer><div class="ft-inner"><div class="ft-brand"><div class="logo-wrap logo-dark"><div class="logo-pill"><div class="logo-orb"></div><div class="logo-16am">16am</div></div><div class="logo-base">Diagnostics <div class="ldot"></div> État des lieux</div></div><p>Expert en diagnostics en Rhône-Alpes Auvergne.</p></div><div class="ft-col"><h4>Services</h4><ul><li><a onclick="showPage('prestations')">Tous les diagnostics</a></li></ul></div><div class="ft-col"><h4>Espaces</h4><ul><li><a onclick="showPage('particulier')">Particuliers</a></li><li><a onclick="showPage('professionnels')">Professionnels</a></li></ul></div><div class="ft-col"><h4>Contact</h4><ul><li><a href="tel:+33047873730">04 78 73 73 09</a></li></ul></div></div><div class="ft-bottom"><span>© 2026 SAS 16am by Acticontrole</span><div style="display:flex;gap:16px;"><a href="#">Mentions légales</a><a href="#">Confidentialité</a></div></div></footer>
+</div>
+
+<script>
+// ── URL DE TON BACKEND RAILWAY (à changer après déploiement) ────────────────
+const API_URL = 'https://TON-BACKEND.up.railway.app';
+
+function showPage(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  const pg=document.getElementById('page-'+id);
+  if(pg){pg.classList.add('active');}
+  document.querySelectorAll('.nav-links a').forEach(a=>a.classList.remove('active'));
+  const n=document.getElementById('nav-'+id);
+  if(n)n.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+const ham=document.getElementById('ham'),mob=document.getElementById('mobDr');
+ham.addEventListener('click',()=>{
+  const o=mob.classList.toggle('open');
+  ham.classList.toggle('open',o);
+  document.body.style.overflow=o?'hidden':'';
+});
+function cMenu(){mob.classList.remove('open');ham.classList.remove('open');document.body.style.overflow='';}
+window.addEventListener('resize',()=>{if(window.innerWidth>640)cMenu();});
+function selT(el){document.querySelectorAll('.tc').forEach(c=>c.classList.remove('sel'));el.classList.add('sel');}
+
+// ── CALENDRIER RDV ──────────────────────────────────────────────────────────
+let calYear=2026,calMonth=2;
+let selectedDate=null,selectedSlot=null;
+const monthNames=['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'];
+function getSlots(dateStr){
+  const d=new Date(dateStr);
+  const dow=d.getDay();
+  if(dow===0) return [];
+  const base=['8h00','9h00','10h00','11h00','14h00','15h00','16h00','17h00'];
+  const hash=d.getDate()*7+d.getMonth();
+  return base.map((s,i)=>({time:s,full:(hash+i)%7===0}));
+}
+function renderCal(){
+  const grid=document.getElementById('cal-grid');
+  if(!grid)return;
+  const label=document.getElementById('cal-month-label');
+  if(label) label.textContent=monthNames[calMonth]+' '+calYear;
+  const firstDay=new Date(calYear,calMonth,1);
+  let dow=firstDay.getDay();
+  dow=dow===0?6:dow-1;
+  const daysInMonth=new Date(calYear,calMonth+1,0).getDate();
+  const today=new Date();today.setHours(0,0,0,0);
+  let html='';
+  for(let i=0;i<dow;i++) html+='<div class="cal-day empty"></div>';
+  for(let d=1;d<=daysInMonth;d++){
+    const date=new Date(calYear,calMonth,d);
+    date.setHours(0,0,0,0);
+    const dateStr=`${calYear}-${String(calMonth+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+    const isPast=date<today;
+    const isSun=date.getDay()===0;
+    const isToday=date.getTime()===today.getTime();
+    const isSel=selectedDate===dateStr;
+    const slots=getSlots(dateStr);
+    const hasAvail=slots.some(s=>!s.full);
+    let cls='cal-day';
+    if(isPast||isSun) cls+=' past';
+    else cls+=' available';
+    if(isToday) cls+=' today';
+    if(isSel) cls+=' selected';
+    if(hasAvail&&!isPast&&!isSun) cls+=' has-slots';
+    html+=`<div class="${cls}" onclick="selectDate('${dateStr}')">${d}</div>`;
+  }
+  grid.innerHTML=html;
+}
+function changeMonth(dir){
+  calMonth+=dir;
+  if(calMonth>11){calMonth=0;calYear++;}
+  if(calMonth<0){calMonth=11;calYear--;}
+  selectedDate=null;selectedSlot=null;
+  renderCal();
+  document.getElementById('slots-section').style.display='none';
+  document.getElementById('rdv-form-section').style.display='none';
+  document.getElementById('rdv-sel-date').textContent='—';
+  document.getElementById('rdv-sel-time').textContent='Aucun créneau choisi';
+}
+function selectDate(dateStr){
+  const date=new Date(dateStr+'T00:00:00');
+  const today=new Date();today.setHours(0,0,0,0);
+  if(date<today||date.getDay()===0)return;
+  selectedDate=dateStr;selectedSlot=null;
+  renderCal();
+  const slots=getSlots(dateStr);
+  const opts=monthNames[parseInt(dateStr.split('-')[1])-1];
+  const day=parseInt(dateStr.split('-')[2]);
+  const dayNames2=['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'];
+  document.getElementById('slots-title').textContent='Créneaux disponibles — '+dayNames2[date.getDay()]+' '+day+' '+opts;
+  document.getElementById('rdv-sel-date').textContent=dayNames2[date.getDay()]+' '+day+' '+opts+' '+calYear;
+  document.getElementById('rdv-sel-time').textContent='Choisissez un créneau ↓';
+  const sg=document.getElementById('slots-grid');
+  sg.innerHTML=slots.map(s=>`<button class="slot${s.full?' full':''}" ${s.full?'disabled':''} onclick="selectSlot('${s.time}',this)">${s.time}</button>`).join('');
+  document.getElementById('slots-section').style.display='block';
+  document.getElementById('rdv-form-section').style.display='none';
+  document.getElementById('slots-section').scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+function selectSlot(time,el){
+  document.querySelectorAll('.slot').forEach(s=>s.classList.remove('selected'));
+  el.classList.add('selected');
+  selectedSlot=time;
+  document.getElementById('rdv-sel-time').textContent=time;
+  document.getElementById('rdv-form-section').style.display='block';
+  document.getElementById('rdv-form-section').scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+async function confirmRdv(){
+  const prenom=document.getElementById('rdv-prenom').value.trim();
+  const nom=document.getElementById('rdv-nom').value.trim();
+  const tel=document.getElementById('rdv-tel').value.trim();
+  const email=document.getElementById('rdv-email').value.trim();
+  const addr=document.getElementById('rdv-adresse').value.trim();
+  const note=document.getElementById('rdv-note')?.value.trim();
+  if(!prenom||!nom||!tel||!email){alert('Merci de remplir tous les champs obligatoires.');return;}
+  if(!selectedDate||!selectedSlot){alert('Veuillez sélectionner une date et un créneau.');return;}
+  try{
+    await fetch(API_URL+'/api/rdv',{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({prenom,nom,telephone:tel,email,adresse:addr,note,date:selectedDate,heure:selectedSlot})});
+  }catch(e){console.warn('Backend RDV non joignable - mode demo');}
+  const date=new Date(selectedDate+'T00:00:00');
+  const dayN=['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'];
+  const monthN=monthNames[date.getMonth()];
+  const dateLabel=dayN[date.getDay()]+' '+date.getDate()+' '+monthN+' '+calYear;
+  document.getElementById('rs-date').textContent=dateLabel;
+  document.getElementById('rs-time').textContent=selectedSlot;
+  document.getElementById('rs-name').textContent=prenom+' '+nom+' — '+tel;
+  document.getElementById('rs-addr').textContent=addr||'Adresse non précisée';
+  document.getElementById('rdv-form-section').style.display='none';
+  document.getElementById('slots-section').style.display='none';
+  const calH=document.querySelector('.cal-header');
+  if(calH)calH.style.display='none';
+  document.querySelector('.cal-grid-head').style.display='none';
+  document.getElementById('cal-grid').style.display='none';
+  document.querySelector('.rdv-main h2').style.display='none';
+  document.querySelector('.rdv-main>p').style.display='none';
+  const succ=document.getElementById('rdv-success');
+  succ.classList.add('show');
+  succ.scrollIntoView({behavior:'smooth',block:'center'});
+}
+
+// ── DEVIS ──────────────────────────────────────────────────────────────────
+async function sendDevis(e){
+  e.preventDefault();
+  const btn = document.querySelector('.btn-send');
+  btn.textContent = 'Envoi en cours...';
+  btn.disabled = true;
+  const form = e.target;
+  const diagnostics = [...form.querySelectorAll('.dck input[type=checkbox]:checked')]
+    .map(el => el.nextElementSibling.querySelector('strong').textContent);
+  const data = {
+    type_bien: form.querySelector('input[name=bien]:checked')?.value || '',
+    surface: form.querySelectorAll('select')[0]?.value || '',
+    annee_construction: form.querySelectorAll('select')[1]?.value || '',
+    adresse: form.querySelector('input[type=text][placeholder*="Lyon"]')?.value || '',
+    motif: form.querySelectorAll('select')[2]?.value || '',
+    date_souhaitee: form.querySelector('input[type=date]')?.value || '',
+    diagnostics,
+    message: form.querySelector('textarea')?.value || ''
+  };
+  try {
+    const res = await fetch(API_URL + '/api/devis', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+    const json = await res.json();
+    if (json.success) {
+      const refEl = document.getElementById('sbox-ref');
+      if (refEl) refEl.textContent = json.ref;
+      document.getElementById('sbox').classList.add('show');
+      document.getElementById('sbox').scrollIntoView({behavior:'smooth',block:'center'});
+    } else {
+      alert('Erreur : ' + (json.error || 'Réessayez ou appelez le 04 78 73 73 09'));
+    }
+  } catch(err) {
+    console.warn('Backend non joignable — mode démo');
+    const ref = '16AM-' + new Date().getFullYear() + '-' + Math.floor(1000+Math.random()*9000);
+    const refEl = document.getElementById('sbox-ref');
+    if (refEl) refEl.textContent = ref;
+    document.getElementById('sbox').classList.add('show');
+    document.getElementById('sbox').scrollIntoView({behavior:'smooth',block:'center'});
+  } finally {
+    btn.textContent = 'Envoyer ma demande →';
+    btn.disabled = false;
+  }
+}
+
+function tFaq(el){el.classList.toggle('open');el.closest('.fg').querySelectorAll('.fi').forEach(f=>{if(f!==el)f.classList.remove('open');});}
+function fTab(el){
+  el.closest('.ftabs').querySelectorAll('.ftab').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active');
+  const filter = el.dataset.filter;
+  document.querySelectorAll('.dg .dc').forEach(card=>{
+    if(filter==='tous'){card.style.display='';card.style.opacity='1';}
+    else {
+      const cats = card.dataset.cat || '';
+      const match = cats.split(' ').includes(filter);
+      card.style.display = match ? '' : 'none';
+      card.style.opacity = match ? '1' : '0';
+    }
+  });
+}
+function connTab(el){el.closest('.conn-tabs').querySelectorAll('.ctab').forEach(t=>t.classList.remove('active'));el.classList.add('active');}
+
+// Init calendrier au chargement
+document.addEventListener('DOMContentLoaded', renderCal);
+
+// ── CHATBOT ──────────────────────────────────────────────────────────────────
+let chatOpen=false;
+let chatHistory=[];
+const SYSTEM_PROMPT=`Tu es l'assistant virtuel de 16am, une entreprise de diagnostics immobiliers et d'états des lieux basée en Rhône-Alpes Auvergne. Tu réponds en français, de façon claire, concise et professionnelle.
+
+Informations clés sur 16am :
+- Équipe de 16 diagnostiqueurs salariés (aucune sous-traitance)
+- Zone : Rhône-Alpes Auvergne
+- Intervention sous 24h, 6j/7
+- Rapport remis immédiatement après intervention
+- Services : DPE, Amiante, Plomb (CREP), Électricité, Gaz, Loi Carrez & Boutin, Termites & ERP, PPT (Plan Pluriannuel de Travaux), États des lieux
+- Tarifs : sur devis gratuit, pas de prix affiché
+- Téléphone : 04 78 73 73 09 — Email : contact@16am.immo
+- Site : www.16am.immo
+
+Diagnostics obligatoires pour VENDRE : DPE, Amiante (avant 1997), Plomb (avant 1949), Électricité & Gaz (+15 ans), Loi Carrez (copropriété), Termites (selon zone), ERP.
+Diagnostics obligatoires pour LOUER : DPE, Plomb, Électricité, Gaz, Loi Boutin, ERP.
+Avant TRAVAUX : Amiante, Plomb, ERP.
+Copropriété : PPT obligatoire pour les +15 ans.
+
+Si on te demande un devis ou un RDV, propose de cliquer sur "Devis gratuit" ou d'appeler le 04 78 73 73 09.
+Ne donne jamais de tarifs précis. Reste focalisé sur les diagnostics immobiliers.`;
+
+function toggleChat(){
+  chatOpen=!chatOpen;
+  document.getElementById('chatWindow').classList.toggle('open',chatOpen);
+  document.querySelector('.chat-badge').style.display=chatOpen?'none':'flex';
+  if(chatOpen) document.getElementById('chatInput').focus();
+}
+function sendSug(el){
+  const txt=el.textContent;
+  document.getElementById('chatSugs').style.display='none';
+  sendMsg(txt);
+}
+function addMsg(role,text){
+  const msgs=document.getElementById('chatMsgs');
+  const now=new Date().toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'});
+  const div=document.createElement('div');
+  div.className='msg '+role;
+  div.innerHTML='<div class="msg-bubble">'+text.replace(/\n/g,'<br>')+'</div><div class="msg-time">'+now+'</div>';
+  msgs.appendChild(div);
+  msgs.scrollTop=msgs.scrollHeight;
+}
+async function sendMsg(text){
+  const input=document.getElementById('chatInput');
+  const msg=(text||input.value).trim();
+  if(!msg)return;
+  input.value='';
+  addMsg('user',msg);
+  chatHistory.push({role:'user',content:msg});
+  const typing=document.getElementById('chatTyping');
+  typing.classList.add('show');
+  document.getElementById('chatMsgs').scrollTop=document.getElementById('chatMsgs').scrollHeight;
+  try{
+    const res=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        model:'claude-sonnet-4-6',
+        max_tokens:1000,
+        system:SYSTEM_PROMPT,
+        messages:chatHistory
+      })
+    });
+    const data=await res.json();
+    const reply=data.content&&data.content[0]?data.content[0].text:'Je suis désolé, une erreur est survenue. Appelez-nous au 04 78 73 73 09.';
+    chatHistory.push({role:'assistant',content:reply});
+    typing.classList.remove('show');
+    addMsg('bot',reply);
+    const sug=document.getElementById('chatSugs');
+    if(chatHistory.length<=4){
+      sug.style.display='flex';
+      sug.innerHTML='<button class="chat-sug" onclick="sendSug(this)">Demander un devis</button><button class="chat-sug" onclick="sendSug(this)">Prendre RDV</button>';
+    }
+  }catch(err){
+    typing.classList.remove('show');
+    addMsg('bot','Je rencontre une difficulté technique. Contactez-nous directement au <strong>04 78 73 73 09</strong> ou par email à contact@16am.immo');
+  }
+}
+</script>
+
+<!-- CHATBOT 16am -->
+<button class="chat-bubble" id="chatBubble" onclick="toggleChat()">
+  <div class="chat-badge">1</div>
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.832-1.438A9.955 9.955 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18a7.955 7.955 0 01-4.035-1.094L5 19.5l.594-2.965A7.955 7.955 0 014 12c0-4.418 3.582-8 8-8s8 3.582 8 8-3.582 8-8 8zm-2.5-9.5h5m-5 3h3"/><circle cx="8.5" cy="12.5" r="1" fill="white"/><circle cx="12" cy="12.5" r="1" fill="white"/><circle cx="15.5" cy="12.5" r="1" fill="white"/></svg>
+</button>
+
+<div class="chat-window" id="chatWindow">
+  <div class="chat-head">
+    <div class="chat-head-av">🤖</div>
+    <div class="chat-head-info">
+      <strong>Assistant 16am</strong>
+      <span>En ligne · répond en quelques secondes</span>
+    </div>
+    <button class="chat-close" onclick="toggleChat()">✕</button>
+  </div>
+  <div class="chat-msgs" id="chatMsgs">
+    <div class="msg bot">
+      <div class="msg-bubble">Bonjour ! 👋 Je suis l'assistant 16am.<br><br>Je peux vous renseigner sur nos diagnostics immobiliers, vous aider à savoir lesquels sont obligatoires selon votre situation, ou vous orienter vers un devis gratuit.<br><br>Comment puis-je vous aider ?</div>
+      <div class="msg-time">Maintenant</div>
+    </div>
+  </div>
+  <div class="chat-typing" id="chatTyping">
+    <span></span><span></span><span></span>
+  </div>
+  <div class="chat-suggestions" id="chatSugs">
+    <button class="chat-sug" onclick="sendSug(this)">Quels diagnostics pour vendre ?</button>
+    <button class="chat-sug" onclick="sendSug(this)">Délais d'intervention ?</button>
+    <button class="chat-sug" onclick="sendSug(this)">Obtenir un devis</button>
+    <button class="chat-sug" onclick="sendSug(this)">Zones couvertes</button>
+  </div>
+  <div class="chat-foot">
+    <input class="chat-input" id="chatInput" type="text" placeholder="Posez votre question..." onkeydown="if(event.key==='Enter')sendMsg()">
+    <button class="chat-send" onclick="sendMsg()">
+      <svg viewBox="0 0 24 24"><path d="M2 12L22 2 12 22 10 14 2 12z"/></svg>
+    </button>
+  </div>
+</div>
+</body>
+</html>
